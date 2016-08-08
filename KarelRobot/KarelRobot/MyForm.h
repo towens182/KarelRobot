@@ -61,6 +61,7 @@ namespace KarelRobot {
 			this->pictureBox1->Size = System::Drawing::Size(224, 195);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
 			// MyForm
 			// 
@@ -75,5 +76,7 @@ namespace KarelRobot {
 
 		}
 #pragma endregion
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
 	};
 }
