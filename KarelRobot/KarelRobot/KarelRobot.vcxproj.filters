@@ -30,4 +30,27 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="beeper.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_for.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="road.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

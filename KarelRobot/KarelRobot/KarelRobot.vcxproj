@@ -150,6 +150,15 @@
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="beeper.bmp" />
+    <Image Include="Carol_back.bmp" />
+    <Image Include="Carol_for.bmp" />
+    <Image Include="Carol_left.bmp" />
+    <Image Include="Carol_right.bmp" />
+    <Image Include="road.bmp" />
+    <Image Include="wall.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
