@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="Beeper.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="readArrayFromFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeper.h" />

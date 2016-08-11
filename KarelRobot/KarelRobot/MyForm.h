@@ -44,7 +44,7 @@ namespace KarelRobot {
 		Graphics^ g;
 		Pen^ blackPen;
 
-		static const int 
+		//static const int 
 
 
 
