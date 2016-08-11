@@ -1,13 +1,18 @@
 #include "Wall.h"
-Wall::wall(bool wall)
+Wall::wall(bool visible)
 {
-	wall = 1;
-	if (wall == 1)
+	visible = 1;
+	if (visible == 1)
 	{
 		// Karel turns away
 	}
 	else
 	{
-		wall == 0;
+		visible == 0;
 	}
+}
+
+System::Drawing::Icon^ Wall::getIcon()
+{
+	return wallIcon;
 }

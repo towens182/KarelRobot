@@ -139,6 +139,7 @@
     <ClCompile Include="Beeper.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="readArrayFromFile.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeper.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
