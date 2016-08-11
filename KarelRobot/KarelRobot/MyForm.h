@@ -54,7 +54,7 @@ namespace KarelRobot {
 	private: System::Windows::Forms::Label^  label_10;
 	private: System::Windows::Forms::Label^  Status_Label;
 
-		static const int 
+		//static const int 
 
 
 
