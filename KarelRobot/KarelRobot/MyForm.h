@@ -113,6 +113,7 @@ namespace KarelRobot {
 			this->U_but->TabIndex = 2;
 			this->U_but->Text = L"UP";
 			this->U_but->UseVisualStyleBackColor = true;
+			this->U_but->Click += gcnew System::EventHandler(this, &MyForm::U_but_Click);
 			// 
 			// D_but
 			// 
@@ -122,6 +123,7 @@ namespace KarelRobot {
 			this->D_but->TabIndex = 3;
 			this->D_but->Text = L"DOWN";
 			this->D_but->UseVisualStyleBackColor = true;
+			this->D_but->Click += gcnew System::EventHandler(this, &MyForm::D_but_Click);
 			// 
 			// L_but
 			// 
@@ -131,6 +133,7 @@ namespace KarelRobot {
 			this->L_but->TabIndex = 4;
 			this->L_but->Text = L"LEFT";
 			this->L_but->UseVisualStyleBackColor = true;
+			this->L_but->Click += gcnew System::EventHandler(this, &MyForm::L_but_Click);
 			// 
 			// R_but
 			// 
@@ -140,6 +143,7 @@ namespace KarelRobot {
 			this->R_but->TabIndex = 5;
 			this->R_but->Text = L"RIGHT";
 			this->R_but->UseVisualStyleBackColor = true;
+			this->R_but->Click += gcnew System::EventHandler(this, &MyForm::R_but_Click);
 			// 
 			// label1
 			// 
@@ -233,5 +237,13 @@ namespace KarelRobot {
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-	};
+	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+};
 }
