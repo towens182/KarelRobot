@@ -22,6 +22,10 @@ namespace KarelRobot {
 			//TODO: Add the constructor code here
 			//
 		}
+		bool North;
+		bool South;
+		bool East;
+		bool West;
 
 	protected:
 		/// <summary>
@@ -238,12 +242,28 @@ namespace KarelRobot {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
+		North = true;
+		West = false;
+		South = false;
+		East = false;
 	}
-private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
-}
+	private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
+		North = false;
+		West = true;
+		South = false;
+		East = false;
+	}
+	private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
+		North = false;
+		West = false;
+		South = false;
+		East = true;
+	}
+	private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
+		North = false;
+		West = false;
+		South = true;
+		East = false;
+	}
 };
 }
