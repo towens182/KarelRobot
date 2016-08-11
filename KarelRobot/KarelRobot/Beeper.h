@@ -1,17 +1,20 @@
 #pragma once
-ref class Beeper
+#include "Item.h"
+ref class Beeper :public Item
 {
+
 private:
 	
-	int row;
-	int col;
 	int num_beepers;
-	bool beeper_visible;
-
+	bool status;
+	
 	static System::Drawing::Icon^ beeperIcon = gcnew System::Drawing::Icon("beeper.bmp");
+private:	
+	Beeper() {};
+	
 public:
 	//Initializing constructor
-	Beeper(int row, int col, int num_beepers);
+	Beeper(int row, int col, int num_beepers, bool visible);
 
 	//array<Int32>^  singleDArray = gcnew array<Int32>(ARRAY_SIZE)
 

@@ -40,7 +40,14 @@ namespace KarelRobot {
 
 	private:
 
-		array <Beeper^, 1>^ beepers;
+		array <Beeper^, 1>^ beeper_location;
+		Graphics^ g;
+		Pen^ blackPen;
+
+		static const int 
+
+
+
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -65,7 +72,6 @@ namespace KarelRobot {
 			this->pictureBox1->Size = System::Drawing::Size(224, 195);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
 			// button1
 			// 
@@ -92,5 +98,13 @@ namespace KarelRobot {
 
 		}
 #pragma endregion
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) 
+	{
+		g = pictureBox1->CreateGraphics();
+		blackPen = gcnew System::Drawing::Pen(Color::Black);
+
+		//Construct beeper_location array
+		beeper_location = gcnew array<Int32>(ARRAY_SIZE);
+	}
 	};
 }

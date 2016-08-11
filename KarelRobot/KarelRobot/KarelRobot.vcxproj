@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeper.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -158,6 +159,9 @@
     <Image Include="Carol_right.bmp" />
     <Image Include="road.bmp" />
     <Image Include="wall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="specifics.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
