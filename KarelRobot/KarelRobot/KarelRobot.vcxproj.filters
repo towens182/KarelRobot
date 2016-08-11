@@ -18,7 +18,10 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Walls.cpp">
+    <ClCompile Include="Beeper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,7 +29,13 @@
     <ClInclude Include="MyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Walls.h">
+    <ClInclude Include="Beeper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,5 +43,31 @@
     <EmbeddedResource Include="MyForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="beeper.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_for.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carol_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="road.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="specifics.txt" />
   </ItemGroup>
 </Project>

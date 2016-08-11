@@ -136,19 +136,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Beeper.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Walls.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Beeper.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Walls.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="beeper.bmp" />
+    <Image Include="Carol_back.bmp" />
+    <Image Include="Carol_for.bmp" />
+    <Image Include="Carol_left.bmp" />
+    <Image Include="Carol_right.bmp" />
+    <Image Include="road.bmp" />
+    <Image Include="wall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="specifics.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
