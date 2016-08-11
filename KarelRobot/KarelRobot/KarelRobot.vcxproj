@@ -148,6 +148,8 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Robot.h" />
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="Walls.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
