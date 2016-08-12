@@ -40,7 +40,7 @@ namespace KarelRobot {
 
 	private:
 
-		array <Beeper^, 1>^ beeper_location;
+	
 		Graphics^ g;
 		Pen^ blackPen;
 	private: System::Windows::Forms::Button^  U_but;
@@ -228,10 +228,12 @@ namespace KarelRobot {
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 
-		//Construct beeper_location array
-		beeper_location = gcnew array<Int32>(ARRAY_SIZE);
+		
+
+		
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
+
 	};
 }

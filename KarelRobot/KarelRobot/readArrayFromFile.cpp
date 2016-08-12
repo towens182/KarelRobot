@@ -87,4 +87,16 @@ bool readStringArrayFromFile(array<System::Int32, 2>^ twoDArray, int& number_rea
 	else
 		return true;
 }
+ void ReadFile()
+	{
+		using namespace std;
+		
+		for ()
+		{
+			string keyword;
+			int x, y, z;
 
+
+		}
+
+	}
