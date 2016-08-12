@@ -1,5 +1,6 @@
 #pragma once
 #include "Beeper.h"
+#include "Robot.h"
 namespace KarelRobot {
 
 	using namespace System;
