@@ -28,6 +28,11 @@ namespace KarelRobot {
 		bool East;
 		bool West;
 
+		int robot_x = 20;
+	private: System::Windows::Forms::PictureBox^  robot_pic;
+	public:
+		int robot_y = 20;
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -88,8 +93,10 @@ namespace KarelRobot {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label_10 = (gcnew System::Windows::Forms::Label());
 			this->Status_Label = (gcnew System::Windows::Forms::Label());
+			this->robot_pic = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->robot_pic))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -204,11 +211,20 @@ namespace KarelRobot {
 			this->Status_Label->TabIndex = 11;
 			this->Status_Label->Text = L"Text_Goes Here";
 			// 
+			// robot_pic
+			// 
+			this->robot_pic->Location = System::Drawing::Point(232, 288);
+			this->robot_pic->Name = L"robot_pic";
+			this->robot_pic->Size = System::Drawing::Size(32, 32);
+			this->robot_pic->TabIndex = 12;
+			this->robot_pic->TabStop = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(722, 584);
+			this->Controls->Add(this->robot_pic);
 			this->Controls->Add(this->Status_Label);
 			this->Controls->Add(this->label_10);
 			this->Controls->Add(this->label3);
@@ -227,6 +243,7 @@ namespace KarelRobot {
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::MyForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->robot_pic))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -236,6 +253,7 @@ namespace KarelRobot {
 	{
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
+		g = robot_pic->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 
 		
@@ -249,24 +267,48 @@ namespace KarelRobot {
 		West = false;
 		East = false;
 		South = false;
+
+		bmp = gcnew Bitmap(L"Carol_back.bmp");
+
+		robot_y = robot_y - 5;
+		robot_pic->Location = Point(robot_x, robot_y);
+		Refresh();
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = true;
 	East = false;
 	South = false;
+
+	bmp = gcnew Bitmap(L"Carol_left.bmp");
+
+	robot_x = robot_x - 5;
+	robot_pic->Location = Point(robot_x, robot_y);
+	Refresh();
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = false;
 	East = true;
 	South = false;
+
+	bmp = gcnew Bitmap(L"Carol_right.bmp");
+
+	robot_x = robot_x + 5;
+	robot_pic->Location = Point(robot_x, robot_y);
+	Refresh();
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = false;
 	East = false;
 	South = true;
+
+	bmp = gcnew Bitmap(L"Carol_for.bmp");
+
+	robot_y = robot_y + 5;
+	robot_pic->Location = Point(robot_x, robot_y);
+	Refresh();
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 	g->DrawImage(bmp, 20, 20, 32, 32);
