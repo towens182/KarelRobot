@@ -1,6 +1,7 @@
 #pragma once
 #include "Beeper.h"
 #include "Robot.h"
+#include "readFile.cpp"
 namespace KarelRobot {
 
 	using namespace System;
@@ -236,8 +237,9 @@ namespace KarelRobot {
 	{
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
-
+		ReadFile();
 		
+
 
 		
 	}

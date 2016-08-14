@@ -21,10 +21,10 @@
     <ClCompile Include="Beeper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="readArrayFromFile.cpp">
+    <ClCompile Include="Robot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Robot.cpp">
+    <ClCompile Include="readFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
