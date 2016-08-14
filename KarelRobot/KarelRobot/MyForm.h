@@ -1,7 +1,6 @@
 #pragma once
 #include "Beeper.h"
 #include "Robot.h"
-#include "readFile.cpp"
 namespace KarelRobot {
 
 	using namespace System;
@@ -55,6 +54,7 @@ namespace KarelRobot {
 	private: System::Windows::Forms::Button^  R_but;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
+	private: Bitmap^ bmp;
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label_10;
@@ -76,7 +76,6 @@ namespace KarelRobot {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->U_but = (gcnew System::Windows::Forms::Button());
@@ -171,7 +170,6 @@ namespace KarelRobot {
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->pictureBox2->Location = System::Drawing::Point(511, 51);
 			this->pictureBox2->Name = L"pictureBox2";
@@ -226,6 +224,7 @@ namespace KarelRobot {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::MyForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
@@ -237,13 +236,40 @@ namespace KarelRobot {
 	{
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
-		ReadFile();
-		
+		bmp = gcnew Bitmap(L"Carol_back.bmp");
 
+		
 
 		
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-	};
+	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
+		North = true;
+		West = false;
+		East = false;
+		South = false;
+	}
+private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
+	North = false;
+	West = true;
+	East = false;
+	South = false;
+}
+private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
+	North = false;
+	West = false;
+	East = true;
+	South = false;
+}
+private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
+	North = false;
+	West = false;
+	East = false;
+	South = true;
+}
+private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	g->DrawImage(bmp, 20, 20, 32, 32);
+}
+};
 }
