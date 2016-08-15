@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "Beeper.h"
-using namespace System;
+#include "MyForm.h"
 
 
 ///////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@ using namespace System;
 //parameters:
 //string - has X and Y coordinates
 ///////////////////////////////////////////////////////////
-bool findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A)
+void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A)
 {
 	using namespace std;
 	string x[5];
@@ -33,7 +33,7 @@ bool findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 
 	//check if we have all the data, if not then return false;
 	if (index < 1)
-		return false;
+		exit(1);
 
 	/*cout << "end of " << my_string << endl;
 	cout << x[0] << endl << x[1] << endl;*/
@@ -46,8 +46,8 @@ bool findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 	
 
 	//test
-	return true;
-};
+
+}
 
 ///////////////////////////////////////////////////////////
 //Function: read line from a file.
@@ -58,7 +58,7 @@ bool findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 //int max_array_size: max array can be read
 //int number_read: the number of the char has been read
 ///////////////////////////////////////////////////////////
-bool readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
+void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 {
 	using namespace std;
 
@@ -77,9 +77,10 @@ bool readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 		getline(instream, strRead); //reading one character from file to array
 
 		int x, y, z, a;
-		bool flag = findInfo(strRead, keyword, x, y, z, a);
-		if (!flag)
-			break;
+		//bool flag = 
+		findInfo(strRead, keyword, x, y, z, a);
+		/*if (!flag)
+			break;*/
 		//cout << "X: " << x << "   Y: " << y << endl;
 
 		if (keyword == "World")
@@ -107,8 +108,8 @@ bool readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 
 	instream.close();
 	number_read = position;
-	if (number_read == 0)
+	/*if (number_read == 0)
 		return false;
 	else
-		return true;
-};
+		return true;*/
+}

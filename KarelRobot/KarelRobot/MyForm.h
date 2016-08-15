@@ -1,8 +1,12 @@
 #pragma once
 #include "Beeper.h"
+#include "Robot.h"
 #include "readFile.cpp"
 #include "Wall.h"
 #include "Item.h"
+void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read);
+void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
+
 namespace KarelRobot {
 
 	using namespace System;
@@ -259,6 +263,8 @@ namespace KarelRobot {
 		g = robot_pic->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		beeper = gcnew array<Beeper^>(2);
+		
+		//Start Reading from file
 		array<Int32, 2>^  twoDArray = gcnew array<Int32, 2>(10, 10);
 		int number;
 		readFromFile(twoDArray, number);
