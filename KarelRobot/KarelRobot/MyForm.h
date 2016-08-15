@@ -5,7 +5,7 @@
 #include "Item.h"
 #include <string>
 
-void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read);
+void readFromFile(array <System::String^>^ keywordArray, array<System::Int32, 2>^ twoDArray, int& number_read);
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
 
 namespace KarelRobot {
@@ -268,8 +268,9 @@ namespace KarelRobot {
 		
 		//Start Reading from file
 		array<Int32, 2>^  twoDArray = gcnew array<Int32, 2>(10, 10);
+		array <System::String^>^ keywordArray = gcnew array<System::String^>(10);
 		int number;
-		readFromFile(twoDArray, number);
+		readFromFile(keywordArray, twoDArray, number);
 		//String keyword1;
 		//if (keyword1 == "World")
 		//{
