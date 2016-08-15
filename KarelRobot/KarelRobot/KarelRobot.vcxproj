@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beeper.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="Robot.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Beeper.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
