@@ -4,6 +4,7 @@
 #include "readFile.cpp"
 #include "Wall.h"
 #include "Item.h"
+#include "Cell.h"
 void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read);
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
 
