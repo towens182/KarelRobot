@@ -1,6 +1,8 @@
 #pragma once
 #include "Beeper.h"
-#include "Robot.h"
+#include "readFile.cpp"
+#include "Wall.h"
+#include "Item.h"
 namespace KarelRobot {
 
 	using namespace System;
@@ -50,7 +52,7 @@ namespace KarelRobot {
 
 	private:
 
-	
+		array <Beeper^>^ beeper; 
 		Graphics^ g;
 		Pen^ blackPen;
 	private: System::Windows::Forms::Button^  U_but;
@@ -251,12 +253,15 @@ namespace KarelRobot {
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
+		using namespace System;
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 		g = robot_pic->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
-
-		
+		beeper = gcnew array<Beeper^>(2);
+		array<Int32, 2>^  twoDArray = gcnew array<Int32, 2>(10, 10);
+		int number;
+		readFromFile(twoDArray, number);
 
 		
 	}

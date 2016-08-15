@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Beeper.h"
 using namespace System;
 
 
@@ -13,10 +14,10 @@ using namespace System;
 //parameters:
 //string - has X and Y coordinates
 ///////////////////////////////////////////////////////////
-bool findCoordinates(std::string my_string, int& X, int& Y, int& Z, int& A)
+bool findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A)
 {
 	using namespace std;
-	string x[];
+	string x[5];
 	int index = 0;
 	string::iterator my_iter;
 	for (my_iter = my_string.begin(); my_iter != my_string.end(); my_iter++)
@@ -37,13 +38,16 @@ bool findCoordinates(std::string my_string, int& X, int& Y, int& Z, int& A)
 	/*cout << "end of " << my_string << endl;
 	cout << x[0] << endl << x[1] << endl;*/
 
-	X = std::stoi(x[0]);
-	Y = std::stoi(x[1]);
-
+	keyword = x[0];
+	X = std::stoi(x[1]);
+	Y = std::stoi(x[2]);
+	Z = std::stoi(x[3]);
+	A = std::stoi(x[4]);
+	
 
 	//test
 	return true;
-}
+};
 
 ///////////////////////////////////////////////////////////
 //Function: read line from a file.
@@ -54,16 +58,17 @@ bool findCoordinates(std::string my_string, int& X, int& Y, int& Z, int& A)
 //int max_array_size: max array can be read
 //int number_read: the number of the char has been read
 ///////////////////////////////////////////////////////////
-bool readStringArrayFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
+bool readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 {
 	using namespace std;
 
 	ifstream instream;
 	ofstream outstream;
-	const string INPUTFILENAME = "location.txt";
+	const string INPUTFILENAME = "specifics.txt";
 	instream.open(INPUTFILENAME);
 
 	string strRead;
+	string keyword;
 	int position = 0; //this will be used incremently to fill characters in the array 
 	using namespace std;
 	while (!instream.eof())
@@ -71,14 +76,31 @@ bool readStringArrayFromFile(array<System::Int32, 2>^ twoDArray, int& number_rea
 		//instream.get(array[position]); //reading one character from file to array
 		getline(instream, strRead); //reading one character from file to array
 
-		int x, y;
-		bool flag = findCoordinates(strRead, keyword, x, y, z, a);
+		int x, y, z, a;
+		bool flag = findInfo(strRead, keyword, x, y, z, a);
 		if (!flag)
 			break;
 		//cout << "X: " << x << "   Y: " << y << endl;
 
-		twoDArray[position, 0] = x;
-		twoDArray[position, 1] = y;
+		if (keyword == "World")
+		{
+			//Call constructor to initialize
+		}
+		else if (keyword == "Robot")
+		{
+			//call robot constructor
+		}
+		else if (keyword == "Wall")
+		{
+			//call wall constructor
+		}
+		else if (keyword == "Beeper")
+		{
+			using namespace System;
+			Beeper::Beeper(x, y, z);
+		}
+		//twoDArray[position, 0] = x;
+		//twoDArray[position, 1] = y;
 
 		position++;
 	}
@@ -89,4 +111,4 @@ bool readStringArrayFromFile(array<System::Int32, 2>^ twoDArray, int& number_rea
 		return false;
 	else
 		return true;
-}
+};
