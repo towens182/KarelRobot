@@ -19,5 +19,5 @@ public:
 	int getCol() { return col; }
 
 	void setAccess(bool a) { access = a; }
-	void setBeeper(bool status) { status = true; }
+	void setBeeper(bool b) { b = true; }
 };

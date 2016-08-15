@@ -221,9 +221,10 @@ namespace KarelRobot {
 			// 
 			// robot_pic
 			// 
+			this->robot_pic->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->robot_pic->Location = System::Drawing::Point(232, 288);
 			this->robot_pic->Name = L"robot_pic";
-			this->robot_pic->Size = System::Drawing::Size(32, 32);
+			this->robot_pic->Size = System::Drawing::Size(64, 64);
 			this->robot_pic->TabIndex = 12;
 			this->robot_pic->TabStop = false;
 			// 
@@ -305,7 +306,7 @@ namespace KarelRobot {
 
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		Status_Label->Text = "Facing North";
-		robot_y = robot_y - 5;
+		robot_y = robot_y - 16;
 		robot_pic->Location = Point(robot_x, robot_y);
 		Refresh();
 	}
@@ -316,8 +317,8 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	South = false;
 
 	bmp = gcnew Bitmap(L"Carol_left.bmp");
-
-	robot_x = robot_x - 5;
+	Status_Label->Text = "Facing West";
+	robot_x = robot_x - 16;
 	robot_pic->Location = Point(robot_x, robot_y);
 	Refresh();
 }
@@ -328,8 +329,8 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 	South = false;
 
 	bmp = gcnew Bitmap(L"Carol_right.bmp");
-
-	robot_x = robot_x + 5;
+	Status_Label->Text = "Facing East";
+	robot_x = robot_x + 16;
 	robot_pic->Location = Point(robot_x, robot_y);
 	Refresh();
 }
@@ -340,13 +341,13 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	South = true;
 
 	bmp = gcnew Bitmap(L"Carol_for.bmp");
-
-	robot_y = robot_y + 5;
+	Status_Label->Text = "Facing South";
+	robot_y = robot_y + 16;
 	robot_pic->Location = Point(robot_x, robot_y);
 	Refresh();
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-	g->DrawImage(bmp, 20, 20, 32, 32);
+	g->DrawImage(bmp, 0, 0, 32, 32);
 }
 private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
