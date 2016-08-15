@@ -281,7 +281,7 @@ namespace KarelRobot {
 		South = false;
 
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
-
+		Status_Label->Text = "Facing North";
 		robot_y = robot_y - 5;
 		robot_pic->Location = Point(robot_x, robot_y);
 		Refresh();
