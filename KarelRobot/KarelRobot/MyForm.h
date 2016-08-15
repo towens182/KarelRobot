@@ -1,9 +1,10 @@
 #pragma once
 #include "Beeper.h"
 #include "Robot.h"
-#include "readFile.cpp"
 #include "Wall.h"
 #include "Item.h"
+#include <string>
+
 void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read);
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
 
@@ -56,7 +57,7 @@ namespace KarelRobot {
 
 	private:
 
-		array <Beeper^>^ beeper; 
+		array <Beeper^>^ beepers; 
 		Graphics^ g;
 		Pen^ blackPen;
 	private: System::Windows::Forms::Button^  U_but;
@@ -262,12 +263,33 @@ namespace KarelRobot {
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 		g = robot_pic->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
-		beeper = gcnew array<Beeper^>(2);
+		beepers = gcnew array<Beeper^>(2);
 		
 		//Start Reading from file
 		array<Int32, 2>^  twoDArray = gcnew array<Int32, 2>(10, 10);
 		int number;
 		readFromFile(twoDArray, number);
+		//String keyword1;
+		//if (keyword1 == "World")
+		//{
+		//	//Call constructor to initialize
+		//}
+		//else if (keyword == "Robot")
+		//{
+		//	//call robot constructor
+		//}
+		//else if (keyword == "Wall")
+		//{
+		//	//call wall constructor
+		//}
+		//else if (keyword == "Beeper")
+		//{
+		//	int x, y, z;
+		//	using namespace System;
+		//	Beeper^ beep = gcnew Beeper(x, y, z);
+		//	beepers[0] = beep;
+
+		//}
 
 		
 	}

@@ -17,34 +17,36 @@
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A)
 {
 	using namespace std;
-	string x[5];
-	int index = 0;
+	string x[5][5];
+	int index, i = 0;
 	string::iterator my_iter;
-	for (my_iter = my_string.begin(); my_iter != my_string.end(); my_iter++)
+	for (i = 0; i < 5; i++)
 	{
-		//cout << *my_iter;
-		if (*my_iter != ' ')
-			x[index] = x[index] + *my_iter;
-		else
-			index++;
-		if (index > 1)
-			break;
+		for (my_iter = my_string.begin(); my_iter != my_string.end(); my_iter++)
+		{
+			//cout << *my_iter;
+			if (*my_iter != ' ')
+				x[i][index] = x[i][index] + *my_iter;
+			else
+				index++;
+			if (index > 1)
+				break;
+		}
+
+		//check if we have all the data, if not then return false;
+		if (index < 1)
+			exit(1);
+
+		/*cout << "end of " << my_string << endl;
+		cout << x[0] << endl << x[1] << endl;*/
+
+		keyword = x[i][0];
+		X = std::stoi(x[i][1]);
+		Y = std::stoi(x[i][2]);
+		Z = std::stoi(x[i][3]);
+		A = std::stoi(x[i][4]);
+
 	}
-
-	//check if we have all the data, if not then return false;
-	if (index < 1)
-		exit(1);
-
-	/*cout << "end of " << my_string << endl;
-	cout << x[0] << endl << x[1] << endl;*/
-
-	keyword = x[0];
-	X = std::stoi(x[1]);
-	Y = std::stoi(x[2]);
-	Z = std::stoi(x[3]);
-	A = std::stoi(x[4]);
-	
-
 	//test
 
 }
@@ -83,23 +85,6 @@ void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 			break;*/
 		//cout << "X: " << x << "   Y: " << y << endl;
 
-		if (keyword == "World")
-		{
-			//Call constructor to initialize
-		}
-		else if (keyword == "Robot")
-		{
-			//call robot constructor
-		}
-		else if (keyword == "Wall")
-		{
-			//call wall constructor
-		}
-		else if (keyword == "Beeper")
-		{
-			using namespace System;
-			Beeper::Beeper(x, y, z);
-		}
 		//twoDArray[position, 0] = x;
 		//twoDArray[position, 1] = y;
 
