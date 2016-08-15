@@ -112,6 +112,7 @@ namespace KarelRobot {
 			this->pictureBox1->Size = System::Drawing::Size(224, 195);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
 			// button1
 			// 
@@ -323,6 +324,8 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 	g->DrawImage(bmp, 20, 20, 32, 32);
+}
+private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
