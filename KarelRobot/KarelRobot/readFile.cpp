@@ -17,38 +17,33 @@
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A)
 {
 	using namespace std;
-	string x[5][5];
-	int index, i = 0;
+	string x[5];
+	int index = 0;
 	string::iterator my_iter;
-	for (i = 0; i < 5; i++)
+	for (my_iter = my_string.begin(); my_iter != my_string.end(); my_iter++)
 	{
-		for (my_iter = my_string.begin(); my_iter != my_string.end(); my_iter++)
-		{
-			//cout << *my_iter;
-			if (*my_iter != ' ')
-				x[i][index] = x[i][index] + *my_iter;
-			else
-				index++;
-			if (index > 1)
-				break;
+		//cout << *my_iter;
+		if (*my_iter != ' ') {
+			char temp = *my_iter;
+			x[index] = x[index] + *my_iter;
 		}
-
-		//check if we have all the data, if not then return false;
-		if (index < 1)
-			exit(1);
-
-		/*cout << "end of " << my_string << endl;
-		cout << x[0] << endl << x[1] << endl;*/
-
-		keyword = x[i][0];
-		X = std::stoi(x[i][1]);
-		Y = std::stoi(x[i][2]);
-		Z = std::stoi(x[i][3]);
-		A = std::stoi(x[i][4]);
-
+		else
+			index++;
+		if (index > 4)
+			break;
 	}
-	//test
 
+	//check if we have all the data, if not then return false;
+//	if (index < 1)
+//		return false;
+
+	/*cout << "end of " << my_string << endl;
+	cout << x[0] << endl << x[1] << endl;*/
+
+	keyword = x[0];
+	X = std::stoi(x[1]);
+
+//	return true;
 }
 
 ///////////////////////////////////////////////////////////
@@ -60,7 +55,7 @@ void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 //int max_array_size: max array can be read
 //int number_read: the number of the char has been read
 ///////////////////////////////////////////////////////////
-void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
+void readFromFile(array <System::String^>^ keywordArray, array<System::Int32, 2>^ twoDArray, int& number_read)
 {
 	using namespace std;
 
@@ -84,9 +79,12 @@ void readFromFile(array<System::Int32, 2>^ twoDArray, int& number_read)
 		/*if (!flag)
 			break;*/
 		//cout << "X: " << x << "   Y: " << y << endl;
-
-		//twoDArray[position, 0] = x;
-		//twoDArray[position, 1] = y;
+		System::String^ str3 = gcnew System::String(keyword.c_str());
+		keywordArray[position] = str3;
+		twoDArray[position, 0] = x;
+		twoDArray[position, 1] = y;
+		twoDArray[position, 2] = z;
+		twoDArray[position, 3] = a;
 
 		position++;
 	}
