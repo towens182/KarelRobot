@@ -350,5 +350,65 @@ private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::For
 }
 private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	int offset = 30;
+	int i;
+	g = pictureBox1->CreateGraphics();
+	bmp = gcnew Bitmap(L"road.bmp");
+
+	for (i = 0; i < 9; i++)
+	{
+		g->DrawLine(blackPen, 30, i*offset, 200, i*offset);
+		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 9 * offset);
+	}
+
+		//road down left
+		g->DrawImage(bmp, 30, 30, offset, offset);
+		g->DrawImage(bmp, 30, 60, offset, offset);
+		g->DrawImage(bmp, 30, 90, offset, offset);
+		g->DrawImage(bmp, 30, 120, offset, offset);
+		g->DrawImage(bmp, 30, 150, offset, offset);
+		g->DrawImage(bmp, 30, 180, offset, offset);
+		//road across
+		g->DrawImage(bmp, 60, 180, offset, offset);
+		g->DrawImage(bmp, 90, 180, offset, offset);
+		g->DrawImage(bmp, 120, 180, offset, offset);
+		g->DrawImage(bmp, 150, 180, offset, offset);
+		g->DrawImage(bmp, 180, 180, offset, offset);
+		//road up right
+		g->DrawImage(bmp, 180, 30, offset, offset);
+		g->DrawImage(bmp, 180, 60, offset, offset);
+		g->DrawImage(bmp, 180, 90, offset, offset);
+		g->DrawImage(bmp, 180, 120, offset, offset);
+		g->DrawImage(bmp, 180, 150, offset, offset);
+
+}
+private: System:: void drawWorld()
+{
+	int row, col;
+	int x, y;
+
+	drawWorld = gcnew array<Cell^, 2>(NUMROWS, NUMCOLS);
+	for (row = 0; row < NUMROWS; row++)
+	{
+		for (col = 0; col < NUMCOLS; col++)
+		{
+			drawWorld[row, col] = gcnew Cell(row, col, true);
+		}
+	}
+
+
+	for (row = 0; row < NUMROWS; row++)
+	{
+		for (col = 0; col < NUMCOLS; col++)
+		{
+			x = col * CELLSIZE;
+			y = row * CELLSIZE;
+			Rectangle gridRect = Rectangle(x, y, CELLSIZE - 1, CELLSIZE - 1);
+			g->DrawRectangle(blackPen, gridRect);
+		};
+	};
+}
 };
 }
