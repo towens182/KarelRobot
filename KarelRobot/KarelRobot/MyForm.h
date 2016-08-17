@@ -113,7 +113,6 @@ namespace KarelRobot {
 			this->pictureBox1->Size = System::Drawing::Size(224, 195);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
 			// button1
 			// 
@@ -272,6 +271,10 @@ namespace KarelRobot {
 		array <System::String^>^ keywordArray = gcnew array<System::String^>(10);
 		int number;
 		readFromFile(keywordArray, twoDArray, number);
+		for (int i = 0; i < 5; i++)
+		{
+		//	if(keywordArray[i]== )
+		}
 		//String keyword1;
 		//if (keyword1 == "World")
 		//{
@@ -295,8 +298,6 @@ namespace KarelRobot {
 		//}
 
 		
-	}
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
 		North = true;
@@ -349,8 +350,6 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 	g->DrawImage(bmp, 0, 0, 32, 32);
 }
-private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
-}
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	int offset = 30;
@@ -385,12 +384,13 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		g->DrawImage(bmp, 180, 150, offset, offset);
 
 }
-private: System:: void drawWorld()
+private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 {
 	int row, col;
 	int x, y;
 
-	drawWorld = gcnew array<Cell^, 2>(NUMROWS, NUMCOLS);
+	//drawWorld = gcnew array<Cell^, 2>(NUMROWS, NUMCOLS);
+	array <Int32, 2>^ drawWorld = gcnew array<Int32, 2>(NUMROWS, NUMCOLS);
 	for (row = 0; row < NUMROWS; row++)
 	{
 		for (col = 0; col < NUMCOLS; col++)
@@ -399,7 +399,7 @@ private: System:: void drawWorld()
 		}
 	}
 
-
+	int CELLSIZE = 30;
 	for (row = 0; row < NUMROWS; row++)
 	{
 		for (col = 0; col < NUMCOLS; col++)
