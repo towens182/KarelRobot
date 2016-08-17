@@ -1,5 +1,6 @@
 #pragma once
 #include "Beeper.h"
+#include "Cell.h"
 #include "Robot.h"
 #include "Wall.h"
 #include "Item.h"
@@ -271,9 +272,21 @@ namespace KarelRobot {
 		array <System::String^>^ keywordArray = gcnew array<System::String^>(10);
 		int number;
 		readFromFile(keywordArray, twoDArray, number);
-		for (int i = 0; i < 5; i++)
+		for (unsigned int i = 0; i < 5; i++)
 		{
-		//	if(keywordArray[i]== )
+			if (keywordArray[i] == "World")
+			{
+				Cell::Cell(twoDArray[i][2], twoDArray[i][3]);
+				//drawWorld(twoDArray[i][2], twoDArray[i][3]);
+			}
+			else if (keywordArray[i] == "Robot")
+				//Robot::Robot(twoDArray[i][2], twoDArray[i][3])
+				continue;
+			else if (keywordArray[i] == "Wall")
+				//do something
+				continue;
+			else if (keywordArray[i] == "Beeper")
+				Beeper::Beeper(twoDArray[i][2], twoDArray[i][3], twoDArray[i][4]);
 		}
 		//String keyword1;
 		//if (keyword1 == "World")
@@ -395,7 +408,7 @@ private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 	{
 		for (col = 0; col < NUMCOLS; col++)
 		{
-			drawWorld[row, col] = gcnew Cell(row, col, true);
+			//drawWorld[row, col] = gcnew Cell(row, col, true);
 		}
 	}
 
