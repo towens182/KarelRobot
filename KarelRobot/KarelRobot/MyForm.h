@@ -111,7 +111,7 @@ namespace KarelRobot {
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(13, 34);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(224, 195);
+			this->pictureBox1->Size = System::Drawing::Size(433, 389);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -222,7 +222,7 @@ namespace KarelRobot {
 			// robot_pic
 			// 
 			this->robot_pic->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->robot_pic->Location = System::Drawing::Point(232, 288);
+			this->robot_pic->Location = System::Drawing::Point(425, 508);
 			this->robot_pic->Name = L"robot_pic";
 			this->robot_pic->Size = System::Drawing::Size(64, 64);
 			this->robot_pic->TabIndex = 12;
@@ -361,7 +361,6 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	Refresh();
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-	g->DrawImage(bmp, 0, 0, 32, 32);
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
@@ -372,8 +371,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 
 	for (i = 0; i < 9; i++)
 	{
-		g->DrawLine(blackPen, 30, i*offset, 200, i*offset);
-		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 9 * offset);
+		g->DrawLine(blackPen, 30, i*offset, 270, i*offset);
+		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
 	}
 
 		//road down left
