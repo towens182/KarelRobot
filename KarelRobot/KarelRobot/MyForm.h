@@ -248,6 +248,7 @@ namespace KarelRobot {
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
+		//...
 		using namespace System;
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
