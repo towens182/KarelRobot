@@ -359,25 +359,25 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
 	}
 
-		//road down left
-		g->DrawImage(bmp, 30, 30, offset, offset);
-		g->DrawImage(bmp, 30, 60, offset, offset);
-		g->DrawImage(bmp, 30, 90, offset, offset);
-		g->DrawImage(bmp, 30, 120, offset, offset);
-		g->DrawImage(bmp, 30, 150, offset, offset);
-		g->DrawImage(bmp, 30, 180, offset, offset);
-		//road across
-		g->DrawImage(bmp, 60, 180, offset, offset);
-		g->DrawImage(bmp, 90, 180, offset, offset);
-		g->DrawImage(bmp, 120, 180, offset, offset);
-		g->DrawImage(bmp, 150, 180, offset, offset);
-		g->DrawImage(bmp, 180, 180, offset, offset);
-		//road up right
-		g->DrawImage(bmp, 180, 30, offset, offset);
-		g->DrawImage(bmp, 180, 60, offset, offset);
-		g->DrawImage(bmp, 180, 90, offset, offset);
-		g->DrawImage(bmp, 180, 120, offset, offset);
-		g->DrawImage(bmp, 180, 150, offset, offset);
+	//road down left
+	g->DrawImage(bmp, 60, 30, offset, offset);
+	g->DrawImage(bmp, 60, 60, offset, offset);
+	g->DrawImage(bmp, 60, 90, offset, offset);
+	g->DrawImage(bmp, 60, 120, offset, offset);
+	g->DrawImage(bmp, 60, 150, offset, offset);
+	g->DrawImage(bmp, 60, 180, offset, offset);
+	//road across
+	g->DrawImage(bmp, 90, 180, offset, offset);
+	g->DrawImage(bmp, 120, 180, offset, offset);
+	g->DrawImage(bmp, 150, 180, offset, offset);
+	g->DrawImage(bmp, 180, 180, offset, offset);
+	g->DrawImage(bmp, 210, 180, offset, offset);
+	//road up right
+	g->DrawImage(bmp, 210, 30, offset, offset);
+	g->DrawImage(bmp, 210, 60, offset, offset);
+	g->DrawImage(bmp, 210, 90, offset, offset);
+	g->DrawImage(bmp, 210, 120, offset, offset);
+	g->DrawImage(bmp, 210, 150, offset, offset);
 
 }
 private: void drawWorld(int& NUMROWS, int& NUMCOLS)
