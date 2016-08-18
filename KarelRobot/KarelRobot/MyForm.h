@@ -31,11 +31,8 @@ namespace KarelRobot {
 			//TODO: Add the constructor code here
 			//
 		}
-		bool North;
-		bool South;
-		bool East;
-		bool West;
 		int offset = 30;
+		int direction; // North = 1/ East = 2/ South = 3/ West = 4
 
 		int robot_x = 20;
 
@@ -300,10 +297,7 @@ namespace KarelRobot {
 		
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
-		North = true;
-		West = false;
-		East = false;
-		South = false;
+		direction = 1; // North = 1/ East = 2/ South = 3/ West = 4
 		g = pictureBox1->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		Status_Label->Text = "Facing North";
@@ -311,10 +305,7 @@ namespace KarelRobot {
 		g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	North = false;
-	West = true;
-	East = false;
-	South = false;
+	direction = 4; // North = 1/ East = 2/ South = 3/ West = 4
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_left.bmp");
 	Status_Label->Text = "Facing West";
@@ -322,10 +313,7 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	North = false;
-	West = false;
-	East = true;
-	South = false;
+	direction = 2; // North = 1/ East = 2/ South = 3/ West = 4
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_right.bmp");
 	Status_Label->Text = "Facing East";
@@ -333,10 +321,7 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	North = false;
-	West = false;
-	East = false;
-	South = true;
+	direction = 3; // North = 1/ East = 2/ South = 3/ West = 4
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_for.bmp");
 	Status_Label->Text = "Facing South";
