@@ -42,6 +42,9 @@ void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 
 	keyword = x[0];
 	X = std::stoi(x[1]);
+	Y = std::stoi(x[2]);
+	Z = std::stoi(x[3]);
+	A = std::stoi(x[4]);
 
 //	return true;
 }
@@ -55,7 +58,7 @@ void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& 
 //int max_array_size: max array can be read
 //int number_read: the number of the char has been read
 ///////////////////////////////////////////////////////////
-void readFromFile(array <System::String^>^ keywordArray, array<System::Int32, 2>^ twoDArray, int& number_read)
+void readFromFile(array <System::String^>^ keywordArray, array <System::Int32, 2>^ twoDArray, int& number_read)
 {
 	using namespace std;
 

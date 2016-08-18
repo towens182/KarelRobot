@@ -272,11 +272,11 @@ namespace KarelRobot {
 		array <System::String^>^ keywordArray = gcnew array<System::String^>(10);
 		int number;
 		readFromFile(keywordArray, twoDArray, number);
-		for (unsigned int i = 0; i < 5; i++)
+		for (Int32 i = 0; i < 5; i++)
 		{
 			if (keywordArray[i] == "World")
 			{
-				Cell::Cell(twoDArray[i][2], twoDArray[i][3]);
+				Cell::Cell(twoDArray[i,0], twoDArray[i,1], true);
 				//drawWorld(twoDArray[i][2], twoDArray[i][3]);
 			}
 			else if (keywordArray[i] == "Robot")
@@ -286,7 +286,7 @@ namespace KarelRobot {
 				//do something
 				continue;
 			else if (keywordArray[i] == "Beeper")
-				Beeper::Beeper(twoDArray[i][2], twoDArray[i][3], twoDArray[i][4]);
+				Beeper::Beeper(twoDArray[i,0], twoDArray[i,1], twoDArray[i,2]);
 		}
 		//String keyword1;
 		//if (keyword1 == "World")
