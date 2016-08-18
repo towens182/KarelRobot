@@ -39,6 +39,11 @@ namespace KarelRobot {
 	public:
 		int robot_y = 20;
 
+		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
+		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
+		//not_facing_south, facing_east, not_facing_east, facing_west, not_facing_west, 
+		//any_beepers_in_beeper_bag, no_beepers_in_beeper_bag
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
