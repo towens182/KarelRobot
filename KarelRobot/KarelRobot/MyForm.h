@@ -35,6 +35,7 @@ namespace KarelRobot {
 		bool South;
 		bool East;
 		bool West;
+		int offset = 30;
 
 		int robot_x = 20;
 	private: System::Windows::Forms::PictureBox^  robot_pic;
@@ -109,9 +110,9 @@ namespace KarelRobot {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(13, 34);
+			this->pictureBox1->Location = System::Drawing::Point(82, 123);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(433, 389);
+			this->pictureBox1->Size = System::Drawing::Size(290, 267);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -222,11 +223,12 @@ namespace KarelRobot {
 			// robot_pic
 			// 
 			this->robot_pic->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->robot_pic->Location = System::Drawing::Point(425, 508);
+			this->robot_pic->Location = System::Drawing::Point(236, 463);
 			this->robot_pic->Name = L"robot_pic";
 			this->robot_pic->Size = System::Drawing::Size(64, 64);
 			this->robot_pic->TabIndex = 12;
 			this->robot_pic->TabStop = false;
+			this->robot_pic->Click += gcnew System::EventHandler(this, &MyForm::robot_pic_Click);
 			// 
 			// MyForm
 			// 
@@ -317,54 +319,51 @@ namespace KarelRobot {
 		West = false;
 		East = false;
 		South = false;
-
+		g = pictureBox1->CreateGraphics();
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		Status_Label->Text = "Facing North";
 		robot_y = robot_y - 16;
-		robot_pic->Location = Point(robot_x, robot_y);
-		Refresh();
+		g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = true;
 	East = false;
 	South = false;
-
+	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_left.bmp");
 	Status_Label->Text = "Facing West";
 	robot_x = robot_x - 16;
-	robot_pic->Location = Point(robot_x, robot_y);
-	Refresh();
+	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = false;
 	East = true;
 	South = false;
-
+	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_right.bmp");
 	Status_Label->Text = "Facing East";
 	robot_x = robot_x + 16;
-	robot_pic->Location = Point(robot_x, robot_y);
-	Refresh();
+	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	North = false;
 	West = false;
 	East = false;
 	South = true;
-
+	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"Carol_for.bmp");
 	Status_Label->Text = "Facing South";
 	robot_y = robot_y + 16;
-	robot_pic->Location = Point(robot_x, robot_y);
-	Refresh();
+	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	int offset = 30;
+	
 	int i;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
@@ -422,6 +421,8 @@ private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 			g->DrawRectangle(blackPen, gridRect);
 		};
 	};
+}
+private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
