@@ -33,11 +33,7 @@ namespace KarelRobot {
 		}
 		int offset = 30;
 		int direction; // North = 1/ East = 2/ South = 3/ West = 4
-
-		int robot_x = 20;
-
 	public:
-		int robot_y = 20;
 
 		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
 		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
@@ -304,42 +300,22 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
 		direction = 1; // North = 1/ East = 2/ South = 3/ West = 4
-		g = pictureBox1->CreateGraphics();
-		bmp = gcnew Bitmap(L"Carol_back.bmp");
-		Status_Label->Text = "Facing North";
-		robot_y = robot_y - 16;
-		g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	direction = 4; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_left.bmp");
-	Status_Label->Text = "Facing West";
-	robot_x = robot_x - 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	direction = 2; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_right.bmp");
-	Status_Label->Text = "Facing East";
-	robot_x = robot_x + 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
 	direction = 3; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_for.bmp");
-	Status_Label->Text = "Facing South";
-	robot_y = robot_y + 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
 private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	
+	direction = 2;
 	int i;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
