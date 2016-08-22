@@ -92,6 +92,7 @@ namespace KarelRobot {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->U_but = (gcnew System::Windows::Forms::Button());
@@ -186,12 +187,14 @@ namespace KarelRobot {
 			// 
 			// pictureBox2
 			// 
+			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->pictureBox2->Location = System::Drawing::Point(345, 50);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(77, 76);
 			this->pictureBox2->TabIndex = 8;
 			this->pictureBox2->TabStop = false;
+			this->pictureBox2->Click += gcnew System::EventHandler(this, &MyForm::pictureBox2_Click);
 			// 
 			// label3
 			// 
@@ -389,6 +392,8 @@ private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 	};
 }
 private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
