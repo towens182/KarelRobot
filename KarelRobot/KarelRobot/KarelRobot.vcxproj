@@ -140,8 +140,8 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="readFile.cpp" />
-    <ClCompile Include="RealWall.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeper.h" />

@@ -273,8 +273,7 @@ namespace KarelRobot {
 				//Robot::Robot(twoDArray[i][2], twoDArray[i][3])
 				continue;
 			else if (keywordArray[i] == "Wall")
-				//do something
-				continue;
+				Wall::Wall(twoDArray[i, 0], twoDArray[i, 1]);
 			else if (keywordArray[i] == "Beeper")
 				Beeper::Beeper(twoDArray[i,0], twoDArray[i,1], twoDArray[i,2]);
 		}
