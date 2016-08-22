@@ -137,17 +137,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beeper.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="readArrayFromFile.cpp" />
-    <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="readFile.cpp" />
+    <ClCompile Include="RealWall.cpp" />
+    <ClCompile Include="Robot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beeper.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Walls.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
@@ -165,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="specifics.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

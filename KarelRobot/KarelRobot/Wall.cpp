@@ -1,15 +1,9 @@
 #include "Wall.h"
-Wall::wall(bool visible)
+Wall::Wall(int X2, int Y2, int newNum_wall)
 {
-	visible = 1;
-	if (visible == 1)
-	{
-		// Karel turns away
-	}
-	else
-	{
-		visible == 0;
-	}
+	setX(X2);
+	setY(Y2);
+	this->num_wall = newNum_wall;
 }
 
 System::Drawing::Icon^ Wall::getIcon()

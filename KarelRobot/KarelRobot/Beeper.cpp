@@ -1,9 +1,9 @@
 #include "Beeper.h"
-Beeper::Beeper(int x, int y, int num_beepers)
+Beeper::Beeper(int newX, int newY, int newNum_beepers)
 {
-	x = 0;
-	y = 0;
-	
+	setX(newX);
+	setY(newY);
+	this->num_beepers = newNum_beepers;
 }
 
 System::Drawing::Icon^ Beeper::getIcon()
