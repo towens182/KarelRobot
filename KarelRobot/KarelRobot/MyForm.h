@@ -33,7 +33,11 @@ namespace KarelRobot {
 		}
 		int offset = 30;
 		int direction; // North = 1/ East = 2/ South = 3/ West = 4
+
+		int robot_x = 20;
+		int beeper_counter = 0;
 	public:
+		int robot_y = 20;
 
 		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
 		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
@@ -262,17 +266,25 @@ namespace KarelRobot {
 		{
 			if (keywordArray[i] == "World")
 			{
-				Cell::Cell(twoDArray[i,0], twoDArray[i,1], true);
+				Cell::Cell(twoDArray[i, 0], twoDArray[i, 1], true);
 				//drawWorld(twoDArray[i][2], twoDArray[i][3]);
 			}
 			else if (keywordArray[i] == "Robot")
-				//Robot::Robot(twoDArray[i][2], twoDArray[i][3])
+				//Robot::Robot(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 4]);
 				continue;
 			else if (keywordArray[i] == "Wall")
 				//do something
 				continue;
 			else if (keywordArray[i] == "Beeper")
-				Beeper::Beeper(twoDArray[i,0], twoDArray[i,1], twoDArray[i,2]);
+			{
+				
+				
+				
+				Beeper::Beeper(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 2]);
+				beeper_counter++;
+				Rectangle beeperRect = Rectangle(twoDArray[i, 0], twoDArray[i, 1], offset, offset);
+				g->DrawIcon(beepers[i]->getIcon(), beeperRect);
+			}
 		}
 		//String keyword1;
 		//if (keyword1 == "World")
@@ -315,10 +327,12 @@ private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::For
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	direction = 2;
+	
 	int i;
+	direction = 2;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
+
 
 	for (i = 0; i < 9; i++)
 	{
@@ -346,6 +360,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	g->DrawImage(bmp, 210, 120, offset, offset);
 	g->DrawImage(bmp, 210, 150, offset, offset);
 
+	
 }
 private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 {
