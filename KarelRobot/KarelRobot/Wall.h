@@ -3,8 +3,7 @@
 ref class Wall : public Item
 {
 private:
-	int num_wall;
-	int direction;
+	//int direction;
 
 	static System::Drawing::Icon^ wallIcon = gcnew System::Drawing::Icon("wall.bmp");
 
@@ -12,6 +11,6 @@ private:
 	Wall() {};
 
 public:
-	Wall(int x, int y, int numWall);
+	Wall(int x, int y);
 	System::Drawing::Icon^ Wall::getIcon();
 };
