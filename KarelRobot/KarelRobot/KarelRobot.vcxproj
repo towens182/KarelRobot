@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="Beeper.cpp" />
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="Robot.cpp" />

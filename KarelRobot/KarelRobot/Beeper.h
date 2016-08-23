@@ -10,11 +10,11 @@ private:
 	
 	static System::Drawing::Icon^ beeperIcon = gcnew System::Drawing::Icon("beeper.bmp");
 private:	
-	Beeper() {};
+
 	
 public:
 	//Initializing constructor
-	Beeper(int x, int y, int num_beepers);
+	Beeper();
 
 
 	System::Drawing::Icon^ Beeper::getIcon();

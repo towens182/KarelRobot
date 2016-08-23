@@ -1,10 +1,10 @@
 #pragma once
-#include "Beeper.h"
-#include "Cell.h"
-#include "Robot.h"
-#include "Wall.h"
-#include "Item.h"
-#include <string>
+#include "Beeper.h";
+#include "Cell.h";
+#include "Robot.h";
+#include "Wall.h";
+#include "Item.h";
+#include <string>;
 
 void readFromFile(array <System::String^>^ keywordArray, array<System::Int32, 2>^ twoDArray, int& number_read);
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
@@ -31,14 +31,15 @@ namespace KarelRobot {
 			//TODO: Add the constructor code here
 			//
 		}
-		int offset = 30;
+		static const int offset = 30;
 		int direction; // North = 1/ East = 2/ South = 3/ West = 4
 
 		int robot_x = 20;
 		int beeper_counter = 0;
 	public:
 		int robot_y = 20;
-
+		int x1, y1 = 0;
+		
 		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
 		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
 		//not_facing_south, facing_east, not_facing_east, facing_west, not_facing_west, 
@@ -62,8 +63,11 @@ namespace KarelRobot {
 	private:
 
 		array <Beeper^>^ beepers; 
+		array <Wall^>^ walls;
 		Graphics^ g;
 		Pen^ blackPen;
+		array<Int32, 2>^  twoDArray;
+		array <System::String^>^ keywordArray;
 	private: System::Windows::Forms::Button^  U_but;
 	private: System::Windows::Forms::Button^  D_but;
 	private: System::Windows::Forms::Button^  L_but;
@@ -240,7 +244,6 @@ namespace KarelRobot {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::MyForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
@@ -255,36 +258,15 @@ namespace KarelRobot {
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
+		
 		beepers = gcnew array<Beeper^>(2);
 		
-		//Start Reading from file
-		array<Int32, 2>^  twoDArray = gcnew array<Int32, 2>(10, 10);
-		array <System::String^>^ keywordArray = gcnew array<System::String^>(10);
-		int number;
-		readFromFile(keywordArray, twoDArray, number);
-		for (Int32 i = 0; i < 5; i++)
+		for (int i = 0; i < 2; i++)
 		{
-			if (keywordArray[i] == "World")
-			{
-				Cell::Cell(twoDArray[i, 0], twoDArray[i, 1], true);
-				//drawWorld(twoDArray[i][2], twoDArray[i][3]);
-			}
-			else if (keywordArray[i] == "Robot")
-				//Robot::Robot(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 4]);
-				continue;
-			else if (keywordArray[i] == "Wall")
-				Wall::Wall(twoDArray[i, 0], twoDArray[i, 1]);
-			else if (keywordArray[i] == "Beeper")
-			{
-				
-				
-				
-				Beeper::Beeper(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 2]);
-				beeper_counter++;
-				Rectangle beeperRect = Rectangle(twoDArray[i, 0], twoDArray[i, 1], offset, offset);
-				g->DrawIcon(beepers[i]->getIcon(), beeperRect);
-			}
+			beepers[i] = gcnew Beeper();
 		}
+
+		
 		//String keyword1;
 		//if (keyword1 == "World")
 		//{
@@ -341,13 +323,48 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	robot_y = robot_y + 16;
 	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
-private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 
-}
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
+	beepers[0]->setX(4);
 	
-	int i;
+
+	//Start Reading from file
+	twoDArray = gcnew array<Int32, 2>(10, 10);
+	keywordArray = gcnew array<System::String^>(10);
+	int number;
+	readFromFile(keywordArray, twoDArray, number);
+	//beeper array[3];
+	
+
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (keywordArray[i] == "World")
+		{
+			Cell^ cell = gcnew Cell(twoDArray[i, 0], twoDArray[i, 1], true);
+
+		}
+		/*else if (keywordArray[i] == "Robot")
+		Robot^ robot = gcnew Robot(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 4]);
+		*/
+		else if (keywordArray[i] == "Wall")
+		{
+			//			Wall^ wall = gcnew Wall(twoDArray[i, 0], twoDArray[i, 1]);
+		}
+		else if (keywordArray[i] == "Beeper")
+		{
+			
+			beepers[beeper_counter]->setX(twoDArray[i, 0]);
+			beepers[beeper_counter]->setY(twoDArray[i, 1]);
+
+			beeper_counter++;
+
+		}
+	}
+
+
+	/*int i;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
 
@@ -357,7 +374,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		g->DrawLine(blackPen, 30, i*offset, 270, i*offset);
 		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
 	}
-
+	for (int z = 0; z < beeper_counter; z++)
+	{
+		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getX(), offset, offset);
+		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
+	}
 	//road down left
 	g->DrawImage(bmp, 60, 30, offset, offset);
 	g->DrawImage(bmp, 60, 60, offset, offset);
@@ -378,7 +399,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	g->DrawImage(bmp, 210, 120, offset, offset);
 	g->DrawImage(bmp, 210, 150, offset, offset);
 
-	
+	*/
 }
 private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 {
