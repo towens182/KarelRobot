@@ -1,11 +1,13 @@
 #pragma once
 
+
 ref class Item
 {
 private:
 	int x;
 	int y;
 	int icon;
+	bool access;
 
 public:
 	int getX() { return x; };

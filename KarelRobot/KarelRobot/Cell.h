@@ -1,13 +1,11 @@
 #pragma once
-#include "Beeper.h"
+#include "Robot.h"
 
 ref class Cell
 {
 private:
 
-	int row;
-	int col;
-	bool access;
+
 
 	Cell(void) {};
 
