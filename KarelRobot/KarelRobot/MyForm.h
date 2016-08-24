@@ -32,7 +32,7 @@ namespace KarelRobot {
 			//
 		}
 		static const int offset = 30;
-		int direction; // North = 1/ East = 2/ South = 3/ West = 4
+		//int direction; // North = 1/ East = 2/ South = 3/ West = 4 using robot class
 
 		int robot_x = 20;
 		int beeper_counter = 0;
@@ -68,6 +68,7 @@ namespace KarelRobot {
 		array <Wall^>^ walls;
 		Graphics^ g;
 		Pen^ blackPen;
+		Brush^ whiteBrush;
 		array<Int32, 2>^  twoDArray;
 		array <System::String^>^ keywordArray;
 		Robot^ myRobot;
@@ -260,6 +261,7 @@ namespace KarelRobot {
 		using namespace System;
 		g = pictureBox1->CreateGraphics();
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
+		whiteBrush = gcnew System::Drawing::SolidBrush(Color::White);
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		
 		
@@ -279,37 +281,58 @@ namespace KarelRobot {
 		
 		
 	}
-	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
-		direction = 1; // North = 1/ East = 2/ South = 3/ West = 4
-		g = pictureBox1->CreateGraphics();
-		bmp = gcnew Bitmap(L"Carol_back.bmp");
+	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		myRobot->goUp();
+
+		Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
+		g->DrawIcon(whiteBrush, previous);
+		g->DrawRectangle(blackPen, previous);
+
+		Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+		g->DrawIcon(myRobot->getIcon(), robotRect);
+
 		Status_Label->Text = "Facing North";
-		robot_y = robot_y - 16;
-		g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 	}
-private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	direction = 4; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_left.bmp");
+private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	myRobot->goLeft();
+
+	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
+	g->DrawIcon("whitetile.ico", previous);
+	g->DrawRectangle(blackPen, previous);
+
+	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
+
 	Status_Label->Text = "Facing West";
-	robot_x = robot_x - 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
-private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	direction = 2; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_right.bmp");
+private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	myRobot->goRight();
+
+	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
+	g->DrawIcon(whiteBrush, previous);
+	g->DrawRectangle(blackPen, previous);
+
+	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
+
 	Status_Label->Text = "Facing East";
-	robot_x = robot_x + 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
 }
-private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) {
-	direction = 3; // North = 1/ East = 2/ South = 3/ West = 4
-	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"Carol_for.bmp");
+private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	myRobot->goDown();
+	
+	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset -1);
+	g->DrawIcon(whiteBrush, previous );
+	g->DrawRectangle(blackPen, previous);
+
+	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
+
 	Status_Label->Text = "Facing South";
-	robot_y = robot_y + 16;
-	g->DrawImage(bmp, robot_x, robot_y, offset, offset);
+
 }
 
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
@@ -406,6 +429,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	g->DrawImage(bmp, 210, 150, offset, offset);
 
 	*/
+	
 }
 private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 {
