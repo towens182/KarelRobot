@@ -70,6 +70,7 @@ namespace KarelRobot {
 		Pen^ blackPen;
 		array<Int32, 2>^  twoDArray;
 		array <System::String^>^ keywordArray;
+		Robot^ myRobot;
 	private: System::Windows::Forms::Button^  U_but;
 	private: System::Windows::Forms::Button^  D_but;
 	private: System::Windows::Forms::Button^  L_but;
@@ -261,6 +262,7 @@ namespace KarelRobot {
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		
+		
 		//Create beepers
 		beepers = gcnew array<Beeper^>(2);
 		for (int i = 0; i < 2; i++)
@@ -318,6 +320,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	//Start Reading from file
 	twoDArray = gcnew array<Int32, 2>(10, 10);
 	keywordArray = gcnew array<System::String^>(10);
+	myRobot = gcnew Robot();
 	int number;
 	readFromFile(keywordArray, twoDArray, number);
 
@@ -328,9 +331,15 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			Cell^ cell = gcnew Cell(twoDArray[i, 0], twoDArray[i, 1], true);
 
 		}
-		/*else if (keywordArray[i] == "Robot")
-		Robot^ robot = gcnew Robot(twoDArray[i, 0], twoDArray[i, 1], twoDArray[i, 4]);
-		*/
+		else if (keywordArray[i] == "Robot")
+		{
+			
+			myRobot->setX((offset * twoDArray[i, 0]));
+			myRobot->setY((offset * twoDArray[i, 1]));
+			myRobot->setDirection(twoDArray[i, 2]);
+			myRobot->setBeeps(twoDArray[i, 3]);
+		
+		}
 		else if (keywordArray[i] == "Wall")
 		{
 			walls[wall_counter]->setX((offset * twoDArray[i, 0]));
@@ -351,15 +360,19 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	//Draws Beeper icon
 	for (int z = 0; z < beeper_counter; z++)
 	{
-		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getX(), offset, offset);
+		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getY(), offset, offset);
 		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
 	}
 	//Draws wall icon
 	for (int z = 0; z < wall_counter; z++)
 	{
-		Rectangle wallRect = Rectangle(walls[z]->getX(), walls[z]->getX(), offset, offset);
+		Rectangle wallRect = Rectangle(walls[z]->getX(), walls[z]->getY(), offset, offset);
 		g->DrawIcon(walls[z]->getIcon(), wallRect);
 	}
+
+	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
+	
 
 	int i;
 	g = pictureBox1->CreateGraphics();

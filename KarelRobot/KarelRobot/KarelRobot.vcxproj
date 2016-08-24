@@ -162,10 +162,10 @@
   <ItemGroup>
     <Image Include="beeper.bmp" />
     <Image Include="beeper.ico" />
-    <Image Include="Carol_back.bmp" />
-    <Image Include="Carol_for.bmp" />
-    <Image Include="Carol_left.bmp" />
-    <Image Include="Carol_right.bmp" />
+    <Image Include="Carol_back.ico" />
+    <Image Include="Carol_for.ico" />
+    <Image Include="Carol_left.ico" />
+    <Image Include="Carol_right.ico" />
     <Image Include="road.bmp" />
     <Image Include="wall.bmp" />
     <Image Include="wall.ico" />

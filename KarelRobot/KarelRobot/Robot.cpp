@@ -1,19 +1,16 @@
 #pragma once
 #include "Robot.h"
-Robot::Robot(int newRow, int newCol, int beepers)
+Robot::Robot()
 {
-	row = newRow;
-	col = newCol;
-	numbeepers = beepers;
-	setIcon();
+	setIcon();	
 }
 
 void Robot::setIcon()
 {
-	robotRight = gcnew System::Drawing::Icon("Carol_right.bmp");
-	robotLeft = gcnew System::Drawing::Icon("Carol_left.bmp");
-	robotUp = gcnew System::Drawing::Icon("Carol_back.bmp");
-	robotDown = gcnew System::Drawing::Icon("Carol_for.bmp");
+	robotRight = gcnew System::Drawing::Icon("Carol_right.ico");
+	robotLeft = gcnew System::Drawing::Icon("Carol_left.ico");
+	robotUp = gcnew System::Drawing::Icon("Carol_back.ico");
+	robotDown = gcnew System::Drawing::Icon("Carol_for.ico");
 	direction = 0;
 }
 

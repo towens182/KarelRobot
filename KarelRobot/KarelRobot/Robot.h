@@ -1,6 +1,7 @@
 #pragma once
-#include "Myform.h"
-ref class Robot
+//#include "Myform.h"
+#include "Item.h"
+ref class Robot:public Item
 {
 protected:
 
@@ -12,19 +13,28 @@ protected:
 private:
 	int row;
 	int col;
-	bool access;
+	bool access = true;
 	int numbeepers;
-	Robot(void) {};
+	
 public:
 	int direction;
 	//Initializing Constructor
-	Robot(int newRow, int newcol, int beepers);
-	System::Drawing::Icon^ Robot::getIcon() override;
-	void Robot::setIcon() override;
+	Robot();
+	System::Drawing::Icon^ Robot::getIcon();
+	void Robot::setIcon();
 
 	//Utility methods
 	void goRight() { row++; direction = 0; }
 	void goLeft() { col--; direction = 1; }
 	void goUp() { row--; direction = 2; }
 	void goDown() { row++; direction = 3; }
+
+	int getX() { return row; };
+	int getY() { return col; };
+
+	void setX(int x1) { row = x1; };
+	void setY(int y1) { col = y1; };
+	void setBeeps(int beepers) { numbeepers = beepers; };
+	void setDirection(int dir) { direction = dir; };
 };
+
