@@ -1,7 +1,6 @@
 #pragma once
-#include "Robot.h"
-
-ref class Cell
+#include "Item.h"
+ref class Cell:Item
 {
 private:
 
@@ -13,8 +12,8 @@ public:
 	Cell(int r, int c, bool a);
 
 	bool getAccess() { return access; }
-	int getRow() { return row; }
-	int getCol() { return col; }
+	int getRow() { return y; }
+	int getCol() { return x; }
 
 	void setAccess(bool a) { access = a; }
 	void setBeeper(bool b) { b = true; }

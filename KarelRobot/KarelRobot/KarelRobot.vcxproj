@@ -138,7 +138,6 @@
   <ItemGroup>
     <ClCompile Include="Beeper.cpp" />
     <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="Robot.cpp" />
@@ -162,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="beeper.bmp" />
+    <Image Include="beeper.ico" />
     <Image Include="Carol_back.bmp" />
     <Image Include="Carol_for.bmp" />
     <Image Include="Carol_left.bmp" />

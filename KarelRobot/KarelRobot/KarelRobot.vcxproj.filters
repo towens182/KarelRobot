@@ -33,9 +33,6 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -83,6 +80,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="wall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="beeper.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

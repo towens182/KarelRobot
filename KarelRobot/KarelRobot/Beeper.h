@@ -8,14 +8,16 @@ private:
 	int num_beepers;
 	bool status = true;
 	
-	static System::Drawing::Icon^ beeperIcon = gcnew System::Drawing::Icon("beeper.bmp");
-private:	
+	static System::Drawing::Icon^ beeperIcon;
+private:
 
-	
+
 public:
 	//Initializing constructor
 	Beeper();
-
+	void setIcon(System::Drawing::Icon^ icon);
+	void setNumBeepers(int z) { num_beepers = z; };
+	void pickupBeeper();
 
 	System::Drawing::Icon^ Beeper::getIcon();
 	//array<Int32>^  singleDArray = gcnew array<Int32>(ARRAY_SIZE)

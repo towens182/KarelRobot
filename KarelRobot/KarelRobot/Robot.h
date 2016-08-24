@@ -16,7 +16,7 @@ private:
 	int numbeepers;
 	Robot(void) {};
 public:
-
+	int direction;
 	//Initializing Constructor
 	Robot(int newRow, int newcol, int beepers);
 	System::Drawing::Icon^ Robot::getIcon() override;

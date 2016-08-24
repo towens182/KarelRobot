@@ -1,10 +1,10 @@
 #pragma once
-#include "Beeper.h";
-#include "Cell.h";
-#include "Robot.h";
-#include "Wall.h";
-#include "Item.h";
-#include <string>;
+#include "Beeper.h"
+#include "Cell.h"
+#include "Robot.h"
+#include "Wall.h"
+#include "Item.h"
+#include <string>
 
 void readFromFile(array <System::String^>^ keywordArray, array<System::Int32, 2>^ twoDArray, int& number_read);
 void findInfo(std::string my_string, std::string& keyword, int& X, int& Y, int& Z, int& A);
@@ -267,28 +267,6 @@ namespace KarelRobot {
 		}
 
 		
-		//String keyword1;
-		//if (keyword1 == "World")
-		//{
-		//	//Call constructor to initialize
-		//}
-		//else if (keyword == "Robot")
-		//{
-		//	//call robot constructor
-		//}
-		//else if (keyword == "Wall")
-		//{
-		//	//call wall constructor
-		//}
-		//else if (keyword == "Beeper")
-		//{
-		//	int x, y, z;
-		//	using namespace System;
-		//	Beeper^ beep = gcnew Beeper(x, y, z);
-		//	beepers[0] = beep;
-
-		//}
-
 		
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -326,7 +304,7 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	beepers[0]->setX(4);
+	
 	
 
 	//Start Reading from file
@@ -355,16 +333,20 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		else if (keywordArray[i] == "Beeper")
 		{
 			
-			beepers[beeper_counter]->setX(twoDArray[i, 0]);
-			beepers[beeper_counter]->setY(twoDArray[i, 1]);
-
+			beepers[beeper_counter]->setX((offset * twoDArray[i, 0]));
+			beepers[beeper_counter]->setY((offset * twoDArray[i, 1]));
+			beepers[beeper_counter]->setNumBeepers(twoDArray[i, 2]);
 			beeper_counter++;
 
 		}
 	}
+	for (int z = 0; z < beeper_counter; z++)
+	{
+		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getX(), offset, offset);
+		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
+	}
 
-
-	/*int i;
+	int i;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
 
@@ -374,11 +356,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		g->DrawLine(blackPen, 30, i*offset, 270, i*offset);
 		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
 	}
-	for (int z = 0; z < beeper_counter; z++)
-	{
-		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getX(), offset, offset);
-		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
-	}
+	/*
 	//road down left
 	g->DrawImage(bmp, 60, 30, offset, offset);
 	g->DrawImage(bmp, 60, 60, offset, offset);
