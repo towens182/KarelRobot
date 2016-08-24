@@ -4,8 +4,6 @@ ref class Cell:Item
 {
 private:
 
-
-
 	Cell(void) {};
 
 public:
