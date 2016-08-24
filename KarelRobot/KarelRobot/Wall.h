@@ -1,16 +1,15 @@
 #pragma once
 #include "Item.h"
+
 ref class Wall : public Item
 {
 private:
-	//int direction;
-
-	static System::Drawing::Icon^ wallIcon = gcnew System::Drawing::Icon("wall.bmp");
-
-private:
-	Wall() {};
+	bool access = false;
+	static System::Drawing::Icon^ wallIcon;
+	
 
 public:
-	Wall(int x, int y);
+	Wall();
+	void setIcon(System::Drawing::Icon^ icon);
 	System::Drawing::Icon^ Wall::getIcon();
 };

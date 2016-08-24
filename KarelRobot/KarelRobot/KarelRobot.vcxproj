@@ -168,6 +168,7 @@
     <Image Include="Carol_right.bmp" />
     <Image Include="road.bmp" />
     <Image Include="wall.bmp" />
+    <Image Include="wall.ico" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="specifics.txt" />

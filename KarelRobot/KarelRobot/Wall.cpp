@@ -1,8 +1,13 @@
 #include "Wall.h"
-Wall::Wall(int X2, int Y2)
+#include "Item.h"
+
+Wall::Wall()
 {
-	setX(X2);
-	setY(Y2);
+	setIcon(gcnew System::Drawing::Icon("wall.ico"));
+}
+void Wall::setIcon(System::Drawing::Icon^ icon)
+{
+	wallIcon = icon;
 }
 
 System::Drawing::Icon^ Wall::getIcon()

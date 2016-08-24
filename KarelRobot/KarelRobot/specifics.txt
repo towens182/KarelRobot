@@ -1,5 +1,6 @@
 World 8 8 0 0
 Robot 4 2 1 0
 Wall 2 3 1 0
+Wall 7 4 1 0
 Beeper 3 3 1 0
 Beeper 5 6 2 0

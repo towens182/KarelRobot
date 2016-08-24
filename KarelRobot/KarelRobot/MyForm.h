@@ -36,6 +36,8 @@ namespace KarelRobot {
 
 		int robot_x = 20;
 		int beeper_counter = 0;
+		int wall_counter = 0;
+		int num_walls = 2; //Need to change if adding new walls to specifics.txt
 	public:
 		int robot_y = 20;
 		int x1, y1 = 0;
@@ -259,13 +261,19 @@ namespace KarelRobot {
 		blackPen = gcnew System::Drawing::Pen(Color::Black);
 		bmp = gcnew Bitmap(L"Carol_back.bmp");
 		
+		//Create beepers
 		beepers = gcnew array<Beeper^>(2);
-		
 		for (int i = 0; i < 2; i++)
 		{
 			beepers[i] = gcnew Beeper();
 		}
 
+		//Create walls
+		walls = gcnew array<Wall^>(num_walls);
+		for (int i = 0; i < num_walls; i++)
+		{
+			walls[i] = gcnew Wall();
+		}
 		
 		
 	}
@@ -312,11 +320,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	keywordArray = gcnew array<System::String^>(10);
 	int number;
 	readFromFile(keywordArray, twoDArray, number);
-	//beeper array[3];
-	
 
-
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (keywordArray[i] == "World")
 		{
@@ -328,7 +333,10 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		*/
 		else if (keywordArray[i] == "Wall")
 		{
-			//			Wall^ wall = gcnew Wall(twoDArray[i, 0], twoDArray[i, 1]);
+			walls[wall_counter]->setX((offset * twoDArray[i, 0]));
+			walls[wall_counter]->setY((offset * twoDArray[i, 1]));
+			wall_counter++;
+
 		}
 		else if (keywordArray[i] == "Beeper")
 		{
@@ -340,10 +348,17 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 
 		}
 	}
+	//Draws Beeper icon
 	for (int z = 0; z < beeper_counter; z++)
 	{
 		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getX(), offset, offset);
 		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
+	}
+	//Draws wall icon
+	for (int z = 0; z < wall_counter; z++)
+	{
+		Rectangle wallRect = Rectangle(walls[z]->getX(), walls[z]->getX(), offset, offset);
+		g->DrawIcon(walls[z]->getIcon(), wallRect);
 	}
 
 	int i;
