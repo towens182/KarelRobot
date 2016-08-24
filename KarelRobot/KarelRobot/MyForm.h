@@ -72,6 +72,7 @@ namespace KarelRobot {
 		array<Int32, 2>^  twoDArray;
 		array <System::String^>^ keywordArray;
 		Robot^ myRobot;
+		static System::Drawing::Icon^ tile;
 	private: System::Windows::Forms::Button^  U_but;
 	private: System::Windows::Forms::Button^  D_but;
 	private: System::Windows::Forms::Button^  L_but;
@@ -283,10 +284,11 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+
 		myRobot->goUp();
 
 		Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-		g->DrawIcon(whiteBrush, previous);
+		g->DrawIcon(tile, previous);
 		g->DrawRectangle(blackPen, previous);
 
 		Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
@@ -299,7 +301,7 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	myRobot->goLeft();
 
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-	g->DrawIcon("whitetile.ico", previous);
+	g->DrawIcon(tile, previous);
 	g->DrawRectangle(blackPen, previous);
 
 	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
@@ -312,7 +314,7 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 	myRobot->goRight();
 
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-	g->DrawIcon(whiteBrush, previous);
+	g->DrawIcon(tile, previous);
 	g->DrawRectangle(blackPen, previous);
 
 	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
@@ -325,7 +327,7 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	myRobot->goDown();
 	
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset -1);
-	g->DrawIcon(whiteBrush, previous );
+	g->DrawIcon(tile, previous );
 	g->DrawRectangle(blackPen, previous);
 
 	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
@@ -344,6 +346,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	twoDArray = gcnew array<Int32, 2>(10, 10);
 	keywordArray = gcnew array<System::String^>(10);
 	myRobot = gcnew Robot();
+	tile = gcnew System::Drawing::Icon("whitetile.ico");
 	int number;
 	readFromFile(keywordArray, twoDArray, number);
 
@@ -429,7 +432,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	g->DrawImage(bmp, 210, 150, offset, offset);
 
 	*/
-	
+	button1->Enabled = false;
 }
 private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 {
