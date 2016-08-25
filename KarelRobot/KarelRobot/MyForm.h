@@ -73,6 +73,7 @@ namespace KarelRobot {
 		array<Int32, 2>^  twoDArray;
 		array <System::String^>^ keywordArray;
 		Robot^ myRobot;
+		array <Cell^, 2>^ drawWorld;
 		static System::Drawing::Icon^ tile;
 	private: System::Windows::Forms::Button^  U_but;
 	private: System::Windows::Forms::Button^  D_but;
@@ -138,6 +139,7 @@ namespace KarelRobot {
 			// 
 			// U_but
 			// 
+			this->U_but->Enabled = false;
 			this->U_but->Location = System::Drawing::Point(350, 297);
 			this->U_but->Name = L"U_but";
 			this->U_but->Size = System::Drawing::Size(87, 28);
@@ -148,6 +150,7 @@ namespace KarelRobot {
 			// 
 			// D_but
 			// 
+			this->D_but->Enabled = false;
 			this->D_but->Location = System::Drawing::Point(350, 382);
 			this->D_but->Name = L"D_but";
 			this->D_but->Size = System::Drawing::Size(87, 28);
@@ -158,6 +161,7 @@ namespace KarelRobot {
 			// 
 			// L_but
 			// 
+			this->L_but->Enabled = false;
 			this->L_but->Location = System::Drawing::Point(251, 337);
 			this->L_but->Name = L"L_but";
 			this->L_but->Size = System::Drawing::Size(87, 28);
@@ -168,6 +172,7 @@ namespace KarelRobot {
 			// 
 			// R_but
 			// 
+			this->R_but->Enabled = false;
 			this->R_but->Location = System::Drawing::Point(447, 337);
 			this->R_but->Name = L"R_but";
 			this->R_but->Size = System::Drawing::Size(87, 28);
@@ -285,93 +290,60 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		if (Robot^ Col == 0)
+		myRobot->direction = 2;
+		if(!edge())
 		{
-			Status_Label->Text = "	Can't go this way.";
+			draw_old();
+			myRobot->goUp();
+			draw_robot();
+			checkbeeper();
 		}
-		else if (Robot^ Row == 1 && Robot^ Col == 3)
-		{
-			Status_Label->Text = "Can't go this way.";
-		}
-		else if (Robot^ Row == 6 && Robot^ Col == 4)
-		{
-			Status_Label->Text = "Can't go this way.";
-		}
-		else
-
-		draw_old();
-		myRobot->goUp();
-		draw_robot();
-		checkbeeper();
 		Status_Label->Text = "Facing North";
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	if (Robot^ Row == 0)
+	myRobot->direction = 1;
+	if(!edge())
 	{
-		Status_Label->Text = "	Can't go this way.";
+		draw_old();
+		myRobot->goLeft();
+		draw_robot();
+		checkbeeper();
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	draw_old();
-	myRobot->goLeft();
-	draw_robot();
-	checkbeeper();
 	Status_Label->Text = "Facing West";
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	if (Robot^ Col == 7)
+	myRobot->direction = 0;
+	if(!edge())
 	{
-		Status_Label->Text = "	Can't go this way.";
+		draw_old();
+		myRobot->goRight();
+		draw_robot();
+		checkbeeper();
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	else
-	draw_old();
-	myRobot->goRight();
-	draw_robot();
-	checkbeeper();
 	Status_Label->Text = "Facing East";
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	if (Robot^ Row == 7)
+	myRobot->direction = 3;
+	if(!edge())
 	{
-		Status_Label->Text = "Can't go this way.";
+		draw_old();
+		myRobot->goDown();
+		draw_robot();
+		checkbeeper();
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
-	{
-		Status_Label->Text = "Can't go this way.";
-	}
-	else
-	draw_old();
-	myRobot->goDown();
-	draw_robot();
-	checkbeeper();
 	Status_Label->Text = "Facing South";
 
 }
 
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	
+	U_but->Enabled = true;
+	D_but->Enabled = true;
+	R_but->Enabled = true;
+	L_but->Enabled = true;
 	
 
 	//Start Reading from file
@@ -381,37 +353,40 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	tile = gcnew System::Drawing::Icon("whitetile.ico");
 	label3->Text = "0";
 	int number;
+	int x, y;
 	readFromFile(keywordArray, twoDArray, number);
+	draw_World();
 
 	for (int i = 0; i < 6; i++)
 	{
 		if (keywordArray[i] == "World")
 		{
-			Cell^ cell = gcnew Cell(twoDArray[i, 0], twoDArray[i, 1], true);
+		//	Cell^ cell = gcnew Cell(twoDArray[i, 0], twoDArray[i, 1], true);
 
 		}
 		else if (keywordArray[i] == "Robot")
 		{
 			
-			myRobot->setX((offset * twoDArray[i, 0]));
-			myRobot->setY((offset * twoDArray[i, 1]));
+			myRobot->setX((twoDArray[i, 0]));
+			myRobot->setY((twoDArray[i, 1]));
 			myRobot->setDirection(twoDArray[i, 2]);
 			myRobot->setBeeps(twoDArray[i, 3]);
 		
 		}
 		else if (keywordArray[i] == "Wall")
 		{
-			walls[wall_counter]->setX((offset * twoDArray[i, 0]));
-			walls[wall_counter]->setY((offset * twoDArray[i, 1]));
+			walls[wall_counter]->setX((twoDArray[i, 0]));
+			walls[wall_counter]->setY((twoDArray[i, 1]));
 			wall_counter++;
 
 		}
 		else if (keywordArray[i] == "Beeper")
 		{
 			
-			beepers[beeper_counter]->setX((offset * twoDArray[i, 0]));
-			beepers[beeper_counter]->setY((offset * twoDArray[i, 1]));
+			beepers[beeper_counter]->setX((twoDArray[i, 0]));
+			beepers[beeper_counter]->setY((twoDArray[i, 1]));
 			beepers[beeper_counter]->setNumBeepers(twoDArray[i, 2]);
+			drawWorld[twoDArray[i, 0], twoDArray[i, 1]]->setBeeper(true);
 			beeper_counter++;
 
 		}
@@ -419,18 +394,26 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	//Draws Beeper icon
 	for (int z = 0; z < beeper_counter; z++)
 	{
-		Rectangle beeperRect = Rectangle(beepers[z]->getX(), beepers[z]->getY(), offset, offset);
+		x = beepers[z]->getX() * offset;
+		y = beepers[z]->getY() * offset;
+
+		Rectangle beeperRect = Rectangle(x, y, offset, offset);
 		g->DrawIcon(beepers[z]->getIcon(), beeperRect);
 	}
 	//Draws wall icon
 	for (int z = 0; z < wall_counter; z++)
 	{
-		Rectangle wallRect = Rectangle(walls[z]->getX(), walls[z]->getY(), offset, offset);
+		x = walls[z]->getX() * offset;
+		y = walls[z]->getY() * offset;
+		Rectangle wallRect = Rectangle(x, y, offset, offset);
 		g->DrawIcon(walls[z]->getIcon(), wallRect);
 	}
 
-	//Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	//g->DrawIcon(myRobot->getIcon(), robotRect);
+	//Initial Robot drawing
+	x = myRobot->getX() * offset;
+	y = myRobot->getY() * offset;
+	Rectangle robotRect = Rectangle(x, y, offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
 	
 
 	int i;
@@ -438,11 +421,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	bmp = gcnew Bitmap(L"road.bmp");
 
 
-	for (i = 0; i < 9; i++)
+	/*for (i = 0; i < 9; i++)
 	{
 		g->DrawLine(blackPen, 30, i*offset, 270, i*offset);
 		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
-	}
+	}*/
 	/*
 	//road down left
 	g->DrawImage(bmp, 60, 30, offset, offset);
@@ -467,25 +450,25 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	*/
 	button1->Enabled = false;
 }
-private: void drawWorld(int& NUMROWS, int& NUMCOLS)
+private: void draw_World()
 {
 	int row, col;
 	int x, y;
 
-	//drawWorld = gcnew array<Cell^, 2>(NUMROWS, NUMCOLS);
-	array <Int32, 2>^ drawWorld = gcnew array<Int32, 2>(NUMROWS, NUMCOLS);
-	for (row = 0; row < NUMROWS; row++)
+	drawWorld = gcnew array<Cell^, 2>(8, 8);
+	//array <Int32, 2>^ drawWorld = gcnew array<Int32, 2>(NUMROWS, NUMCOLS);
+	for (row = 0; row < 8; row++)
 	{
-		for (col = 0; col < NUMCOLS; col++)
+		for (col = 0; col < 8; col++)
 		{
-			//drawWorld[row, col] = gcnew Cell(row, col, true);
+			drawWorld[row, col] = gcnew Cell(row, col, true);
 		}
 	}
 
 	int CELLSIZE = 30;
-	for (row = 0; row < NUMROWS; row++)
+	for (row = 0; row < 8; row++)
 	{
-		for (col = 0; col < NUMCOLS; col++)
+		for (col = 0; col < 8; col++)
 		{
 			x = col * CELLSIZE;
 			y = row * CELLSIZE;
@@ -500,15 +483,12 @@ private: System::Void draw_old()
 
 	//Declare local variables;
 	int x, y = 0;
-	int row, col = 0;
 
 	//Initializing local variables;
-	col = myRobot->getX();
-	row = myRobot->getY();
-	x = myRobot->getX();
-	y = myRobot->getY();
+	x = myRobot->getX() * offset;
+	y = myRobot->getY() * offset;
 
-	//Create current myMouse position
+	//Create current robot position
 	Rectangle oldRect = Rectangle(x, y, offset, offset);
 	g->DrawIcon(tile, oldRect);
 	g->DrawRectangle(blackPen, oldRect);
@@ -519,45 +499,46 @@ private: System::Void draw_robot()
 	int x, y = 0;
 	int row, col = 0;
 
-	//Draw mouse at new location
+	//Draw robot at new location
 	col = myRobot->getX();
 	row = myRobot->getY();
-	x = col;
-	y = row;
+	x = col * offset;
+	y = row * offset;
 	Rectangle robotRect = Rectangle(x, y, offset, offset);
 	g->DrawIcon(myRobot->getIcon(), robotRect);
-
-	/*Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-	g->DrawIcon(tile, previous);
-	g->DrawRectangle(blackPen, previous);
-
-	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	g->DrawIcon(myRobot->getIcon(), robotRect);*/
-
 
 
 }
 	private: System::Void checkbeeper()
 	{
-		bool beepone;
-		bool beeptwo;
-		int x = 0;
-		int y = 0;
+		int x, y = 0;
 		x = myRobot->getX();
 		y = myRobot->getY();
-		if (x == 2 && y == 3 && beepone == false)
+		if (drawWorld[x, y]->getBeeper())
 		{
-			beepcounttot++;
-			beepone = true;
+			drawWorld[x, y]->setBeeper(false);
+			MessageBox::Show("You found a beeper", "Congratulations!");
+			myRobot->numbeepers++;
+			label3->Text = myRobot->numbeepers.ToString();
 		}
-		else if (x == 4 && y == 6 && beeptwo == false)
-		{
-			beepcounttot++;
-			beeptwo = true;
-		}
-		
+	 }
+public: bool edge()
+	 {
+				 if (myRobot->direction == 0) {
+					 if (myRobot->getX() < 7) return false;
+				 }
+				 else if (myRobot->direction == 1) {
+					 if (myRobot->getX() > 0) return false;
+				 }
+				 else if (myRobot->direction == 2) {
+					 if (myRobot->getY() > 0) return false;
+				 }
+				 else if (myRobot->direction == 3) {
+					 if (myRobot->getY() < 7) return false;
+				 }
+				 return true;
 
-		 }
+	}
 private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };

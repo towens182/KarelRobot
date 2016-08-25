@@ -13,22 +13,22 @@ protected:
 private:
 	int row;
 	int col;
-	bool access = true;
-	int numbeepers;
+	
 	
 public:
 	int offset = 30;
 	int direction;
+	int numbeepers;
 	//Initializing Constructor
 	Robot();
 	System::Drawing::Icon^ Robot::getIcon();
 	void Robot::setIcon();
 
 	//Utility methods
-	void goRight() { row = (row + offset); direction = 0; }
-	void goLeft() { row = (row - offset); direction = 1; }
-	void goUp() { col = (col - offset); direction = 2; }
-	void goDown() { col = (col + offset); direction = 3; }
+	void goRight() { row++; direction = 0; }
+	void goLeft() { row--; direction = 1; }
+	void goUp() { col--; direction = 2; }
+	void goDown() { col++; direction = 3; }
 
 	int getX() { return row; };
 	int getY() { return col; };
