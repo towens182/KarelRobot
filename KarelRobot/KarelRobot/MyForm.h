@@ -37,7 +37,7 @@ namespace KarelRobot {
 		int robot_x = 20;
 		int beeper_counter = 0;
 		int wall_counter = 0;
-		int num_walls = 2; //Need to change if adding new walls to specifics.txt
+		int num_walls = 4; //Need to change if adding new walls to specifics.txt
 	public:
 		int robot_y = 20;
 		int x1, y1 = 0;
@@ -273,8 +273,8 @@ namespace KarelRobot {
 		
 		
 		//Create beepers
-		beepers = gcnew array<Beeper^>(2);
-		for (int i = 0; i < 2; i++)
+		beepers = gcnew array<Beeper^>(3);
+		for (int i = 0; i < 3; i++)
 		{
 			beepers[i] = gcnew Beeper();
 		}
@@ -290,8 +290,14 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+		//For checking access
+		int x, y = 0;
+
+		x = myRobot->getX();
+		y = myRobot->getY();
+
 		myRobot->direction = 2;
-		if(!edge())
+		if(!edge() && drawWorld[x,(y - 1)]->getAccess())
 		{
 			draw_old();
 			myRobot->goUp();
@@ -302,8 +308,14 @@ namespace KarelRobot {
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
 {
+	//For checking access
+	int x, y = 0;
+
+	x = myRobot->getX();
+	y = myRobot->getY();
+
 	myRobot->direction = 1;
-	if(!edge())
+	if(!edge() && drawWorld[(x - 1), y]->getAccess())
 	{
 		draw_old();
 		myRobot->goLeft();
@@ -312,10 +324,16 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	}
 	Status_Label->Text = "Facing West";
 }
-private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
-{
-	myRobot->direction = 0;
-	if(!edge())
+	private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		//For checking access
+		int x, y = 0;
+
+		x = myRobot->getX();
+		y = myRobot->getY();
+
+		myRobot->direction = 0;
+		if (!edge() && drawWorld[(x + 1), y]->getAccess())
 	{
 		draw_old();
 		myRobot->goRight();
@@ -326,8 +344,14 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
+	//For checking access
+	int x, y = 0;
+
+	x = myRobot->getX();
+	y = myRobot->getY();
+
 	myRobot->direction = 3;
-	if(!edge())
+	if(!edge() && drawWorld[x, (y + 1)]->getAccess())
 	{
 		draw_old();
 		myRobot->goDown();
@@ -357,7 +381,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	readFromFile(keywordArray, twoDArray, number);
 	draw_World();
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		if (keywordArray[i] == "World")
 		{
@@ -377,6 +401,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		{
 			walls[wall_counter]->setX((twoDArray[i, 0]));
 			walls[wall_counter]->setY((twoDArray[i, 1]));
+			drawWorld[twoDArray[i, 0], twoDArray[i, 1]]->setAccess(false);
 			wall_counter++;
 
 		}
@@ -416,7 +441,6 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	g->DrawIcon(myRobot->getIcon(), robotRect);
 	
 
-	int i;
 	g = pictureBox1->CreateGraphics();
 	bmp = gcnew Bitmap(L"road.bmp");
 
@@ -517,9 +541,17 @@ private: System::Void draw_robot()
 		if (drawWorld[x, y]->getBeeper())
 		{
 			drawWorld[x, y]->setBeeper(false);
-			MessageBox::Show("You found a beeper", "Congratulations!");
 			myRobot->numbeepers++;
-			label3->Text = myRobot->numbeepers.ToString();
+			if (myRobot->numbeepers == beeper_counter)
+			{
+				MessageBox::Show("You found all the beepers!", "Congratulations!");
+				exit(1);
+			}
+			else 
+			{
+				MessageBox::Show("You found a beeper", "Congratulations!");
+				label3->Text = myRobot->numbeepers.ToString();
+			}
 		}
 	 }
 public: bool edge()

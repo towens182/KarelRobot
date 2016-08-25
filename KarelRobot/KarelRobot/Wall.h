@@ -4,7 +4,6 @@
 ref class Wall : public Item
 {
 private:
-	bool access = false;
 	static System::Drawing::Icon^ wallIcon;
 	
 

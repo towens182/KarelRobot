@@ -1,6 +1,9 @@
 World 8 8 0 0
-Robot 4 2 2 0
-Wall 2 3 1 0
-Wall 7 4 1 0
-Beeper 3 3 1 0
-Beeper 5 6 1 0
+Robot 6 0 2 0
+Wall 1 2 1 0
+Wall 6 6 1 0
+Wall 5 7 1 0
+Wall 5 6 1 0
+Beeper 2 7 1 0
+Beeper 0 2 1 0
+Beeper 6 7 1 0
