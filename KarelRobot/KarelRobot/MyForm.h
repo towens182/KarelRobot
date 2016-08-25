@@ -41,7 +41,7 @@ namespace KarelRobot {
 	public:
 		int robot_y = 20;
 		int x1, y1 = 0;
-		int beepcounttot = 0;
+		
 		
 		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
 		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
@@ -74,7 +74,6 @@ namespace KarelRobot {
 		array <System::String^>^ keywordArray;
 		Robot^ myRobot;
 		array <Cell^, 2>^ drawWorld;
-		static System::Drawing::Icon^ tile;
 	private: System::Windows::Forms::Button^  U_but;
 	private: System::Windows::Forms::Button^  D_but;
 	private: System::Windows::Forms::Button^  L_but;
@@ -193,9 +192,11 @@ namespace KarelRobot {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(416, 21);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(401, 27);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(63, 13);
+			this->label2->Size = System::Drawing::Size(104, 20);
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"Beeper Bag";
 			// 
@@ -211,29 +212,34 @@ namespace KarelRobot {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(444, 80);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(444, 50);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(44, 13);
+			this->label3->Size = System::Drawing::Size(17, 18);
 			this->label3->TabIndex = 9;
-			this->label3->Text = L"Number";
+			this->label3->Text = L"0";
 			// 
 			// label_10
 			// 
 			this->label_10->AutoSize = true;
+			this->label_10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label_10->Location = System::Drawing::Point(374, 232);
 			this->label_10->Name = L"label_10";
-			this->label_10->Size = System::Drawing::Size(37, 13);
+			this->label_10->Size = System::Drawing::Size(56, 18);
 			this->label_10->TabIndex = 10;
 			this->label_10->Text = L"Status";
 			// 
 			// Status_Label
 			// 
 			this->Status_Label->AutoSize = true;
+			this->Status_Label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->Status_Label->Location = System::Drawing::Point(352, 265);
 			this->Status_Label->Name = L"Status_Label";
-			this->Status_Label->Size = System::Drawing::Size(85, 13);
+			this->Status_Label->Size = System::Drawing::Size(0, 18);
 			this->Status_Label->TabIndex = 11;
-			this->Status_Label->Text = L"Text_Goes Here";
 			// 
 			// MyForm
 			// 
@@ -374,7 +380,6 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	twoDArray = gcnew array<Int32, 2>(10, 10);
 	keywordArray = gcnew array<System::String^>(10);
 	myRobot = gcnew Robot();
-	tile = gcnew System::Drawing::Icon("whitetile.ico");
 	label3->Text = "0";
 	int number;
 	int x, y;
@@ -442,36 +447,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	
 
 	g = pictureBox1->CreateGraphics();
-	bmp = gcnew Bitmap(L"road.bmp");
+	//bmp = gcnew Bitmap(L"road.bmp");
 
-
-	/*for (i = 0; i < 9; i++)
-	{
-		g->DrawLine(blackPen, 30, i*offset, 270, i*offset);
-		g->DrawLine(blackPen, 30 + i*offset, 0, 30 + i*offset, 8 * offset);
-	}*/
-	/*
-	//road down left
-	g->DrawImage(bmp, 60, 30, offset, offset);
-	g->DrawImage(bmp, 60, 60, offset, offset);
-	g->DrawImage(bmp, 60, 90, offset, offset);
-	g->DrawImage(bmp, 60, 120, offset, offset);
-	g->DrawImage(bmp, 60, 150, offset, offset);
-	g->DrawImage(bmp, 60, 180, offset, offset);
-	//road across
-	g->DrawImage(bmp, 90, 180, offset, offset);
-	g->DrawImage(bmp, 120, 180, offset, offset);
-	g->DrawImage(bmp, 150, 180, offset, offset);
-	g->DrawImage(bmp, 180, 180, offset, offset);
-	g->DrawImage(bmp, 210, 180, offset, offset);
-	//road up right
-	g->DrawImage(bmp, 210, 30, offset, offset);
-	g->DrawImage(bmp, 210, 60, offset, offset);
-	g->DrawImage(bmp, 210, 90, offset, offset);
-	g->DrawImage(bmp, 210, 120, offset, offset);
-	g->DrawImage(bmp, 210, 150, offset, offset);
-
-	*/
 	button1->Enabled = false;
 }
 private: void draw_World()
@@ -497,6 +474,7 @@ private: void draw_World()
 			x = col * CELLSIZE;
 			y = row * CELLSIZE;
 			Rectangle gridRect = Rectangle(x, y, CELLSIZE - 1, CELLSIZE - 1);
+			g->FillRectangle(whiteBrush, gridRect);
 			g->DrawRectangle(blackPen, gridRect);
 		};
 	};
@@ -513,8 +491,8 @@ private: System::Void draw_old()
 	y = myRobot->getY() * offset;
 
 	//Create current robot position
-	Rectangle oldRect = Rectangle(x, y, offset, offset);
-	g->DrawIcon(tile, oldRect);
+	Rectangle oldRect = Rectangle(x, y, offset - 1, offset - 1);
+	g->FillRectangle(whiteBrush, oldRect);
 	g->DrawRectangle(blackPen, oldRect);
 
 }
@@ -544,13 +522,13 @@ private: System::Void draw_robot()
 			myRobot->numbeepers++;
 			if (myRobot->numbeepers == beeper_counter)
 			{
+				label3->Text = myRobot->numbeepers.ToString();
 				MessageBox::Show("You found all the beepers!", "Congratulations!");
 				exit(1);
 			}
 			else 
 			{
-				MessageBox::Show("You found a beeper", "Congratulations!");
-				label3->Text = myRobot->numbeepers.ToString();
+				label3->Text = myRobot->numbeepers.ToString();				
 			}
 		}
 	 }

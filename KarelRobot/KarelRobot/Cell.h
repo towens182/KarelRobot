@@ -6,7 +6,7 @@ private:
 
 	Cell(void) {};
 	bool access;
-	bool hasBeeper;
+	bool hasBeeper = false;
 
 public:
 	Cell(int r, int c, bool a);
@@ -17,5 +17,5 @@ public:
 	int getCol() { return x; }
 
 	void setAccess(bool a) { access = a; }
-	void setBeeper(bool beeper) { hasBeeper = true; }
+	void setBeeper(bool beeper) { hasBeeper = beeper; }
 };
