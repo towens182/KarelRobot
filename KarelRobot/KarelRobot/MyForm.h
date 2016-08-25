@@ -73,7 +73,7 @@ namespace KarelRobot {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: Bitmap^ bmp;
-	private: System::Windows::Forms::PictureBox^  pictureBox2;
+
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label_10;
 	private: System::Windows::Forms::Label^  Status_Label;
@@ -94,6 +94,7 @@ namespace KarelRobot {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->U_but = (gcnew System::Windows::Forms::Button());
@@ -102,25 +103,23 @@ namespace KarelRobot {
 			this->R_but = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label_10 = (gcnew System::Windows::Forms::Label());
 			this->Status_Label = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(12, 12);
+			this->pictureBox1->Location = System::Drawing::Point(27, 27);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(290, 267);
+			this->pictureBox1->Size = System::Drawing::Size(245, 242);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(362, 167);
+			this->button1->Location = System::Drawing::Point(272, 336);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -131,9 +130,9 @@ namespace KarelRobot {
 			// U_but
 			// 
 			this->U_but->Enabled = false;
-			this->U_but->Location = System::Drawing::Point(350, 297);
+			this->U_but->Location = System::Drawing::Point(394, 335);
 			this->U_but->Name = L"U_but";
-			this->U_but->Size = System::Drawing::Size(87, 28);
+			this->U_but->Size = System::Drawing::Size(84, 23);
 			this->U_but->TabIndex = 2;
 			this->U_but->Text = L"UP";
 			this->U_but->UseVisualStyleBackColor = true;
@@ -142,9 +141,9 @@ namespace KarelRobot {
 			// D_but
 			// 
 			this->D_but->Enabled = false;
-			this->D_but->Location = System::Drawing::Point(350, 382);
+			this->D_but->Location = System::Drawing::Point(394, 406);
 			this->D_but->Name = L"D_but";
-			this->D_but->Size = System::Drawing::Size(87, 28);
+			this->D_but->Size = System::Drawing::Size(84, 23);
 			this->D_but->TabIndex = 3;
 			this->D_but->Text = L"DOWN";
 			this->D_but->UseVisualStyleBackColor = true;
@@ -153,9 +152,9 @@ namespace KarelRobot {
 			// L_but
 			// 
 			this->L_but->Enabled = false;
-			this->L_but->Location = System::Drawing::Point(251, 337);
+			this->L_but->Location = System::Drawing::Point(302, 369);
 			this->L_but->Name = L"L_but";
-			this->L_but->Size = System::Drawing::Size(87, 28);
+			this->L_but->Size = System::Drawing::Size(84, 23);
 			this->L_but->TabIndex = 4;
 			this->L_but->Text = L"LEFT";
 			this->L_but->UseVisualStyleBackColor = true;
@@ -164,9 +163,9 @@ namespace KarelRobot {
 			// R_but
 			// 
 			this->R_but->Enabled = false;
-			this->R_but->Location = System::Drawing::Point(447, 337);
+			this->R_but->Location = System::Drawing::Point(480, 369);
 			this->R_but->Name = L"R_but";
-			this->R_but->Size = System::Drawing::Size(87, 28);
+			this->R_but->Size = System::Drawing::Size(84, 23);
 			this->R_but->TabIndex = 5;
 			this->R_but->Text = L"RIGHT";
 			this->R_but->UseVisualStyleBackColor = true;
@@ -175,7 +174,7 @@ namespace KarelRobot {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(357, 345);
+			this->label1->Location = System::Drawing::Point(398, 372);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(69, 13);
 			this->label1->TabIndex = 6;
@@ -191,15 +190,6 @@ namespace KarelRobot {
 			this->label2->Size = System::Drawing::Size(104, 20);
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"Beeper Bag";
-			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox2->Location = System::Drawing::Point(345, 50);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(77, 76);
-			this->pictureBox2->TabIndex = 8;
-			this->pictureBox2->TabStop = false;
 			// 
 			// label3
 			// 
@@ -217,18 +207,19 @@ namespace KarelRobot {
 			this->label_10->AutoSize = true;
 			this->label_10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label_10->Location = System::Drawing::Point(374, 232);
+			this->label_10->Location = System::Drawing::Point(421, 159);
 			this->label_10->Name = L"label_10";
 			this->label_10->Size = System::Drawing::Size(56, 18);
 			this->label_10->TabIndex = 10;
 			this->label_10->Text = L"Status";
+			this->label_10->Click += gcnew System::EventHandler(this, &MyForm::label_10_Click);
 			// 
 			// Status_Label
 			// 
 			this->Status_Label->AutoSize = true;
 			this->Status_Label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Status_Label->Location = System::Drawing::Point(352, 265);
+			this->Status_Label->Location = System::Drawing::Point(399, 192);
 			this->Status_Label->Name = L"Status_Label";
 			this->Status_Label->Size = System::Drawing::Size(0, 18);
 			this->Status_Label->TabIndex = 11;
@@ -237,11 +228,11 @@ namespace KarelRobot {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(567, 434);
 			this->Controls->Add(this->Status_Label);
 			this->Controls->Add(this->label_10);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->R_but);
@@ -254,7 +245,6 @@ namespace KarelRobot {
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -547,6 +537,8 @@ public: bool edge()
 
 	}
 private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void label_10_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
