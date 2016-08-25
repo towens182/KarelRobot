@@ -284,7 +284,19 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-
+		if (Robot^ Col == 0)
+		{
+			Status_Label->Text = "	Can't go this way.";
+		}
+		else if (Robot^ Row == 1 && Robot^ Col == 3)
+		{
+			Status_Label->Text = "Can't go this way.";
+		}
+		else if (Robot^ Row == 6 && Robot^ Col == 4)
+		{
+			Status_Label->Text = "Can't go this way.";
+		}
+		else
 		myRobot->goUp();
 
 		Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
@@ -298,6 +310,19 @@ namespace KarelRobot {
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
 {
+	if (Robot^ Row == 0)
+	{
+		Status_Label->Text = "	Can't go this way.";
+	}
+	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else
 	myRobot->goLeft();
 
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
@@ -311,6 +336,19 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
+	if (Robot^ Col == 7)
+	{
+		Status_Label->Text = "	Can't go this way.";
+	}
+	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else
 	myRobot->goRight();
 
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
@@ -324,6 +362,18 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
+	if (Robot^ Row == 7)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}
+	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	{
+		Status_Label->Text = "Can't go this way.";
+	}else
 	myRobot->goDown();
 	
 	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset -1);
@@ -345,6 +395,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	//Start Reading from file
 	twoDArray = gcnew array<Int32, 2>(10, 10);
 	keywordArray = gcnew array<System::String^>(10);
+	label3->Text = "0";
 	myRobot = gcnew Robot();
 	tile = gcnew System::Drawing::Icon("whitetile.ico");
 	int number;
