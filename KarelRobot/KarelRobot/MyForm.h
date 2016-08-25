@@ -550,11 +550,13 @@ private: System::Void draw_robot()
 		{
 			beepcounttot++;
 			beepone = true;
+			Status_Label->Text = "Picked up Beeper.";
 		}
 		else if (x == 120 && y == 180 && beeptwo == false)
 		{
 			beepcounttot++;
 			beeptwo = true;
+			Status_Label->Text = "Picked up Beeper.";
 		}
 		
 
