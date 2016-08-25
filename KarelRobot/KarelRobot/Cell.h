@@ -1,10 +1,8 @@
 #pragma once
 #include "Item.h"
-ref class Cell:Item
+ref class Cell :Item
 {
 private:
-
-
 
 	Cell(void) {};
 

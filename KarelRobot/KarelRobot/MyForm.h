@@ -31,7 +31,7 @@ namespace KarelRobot {
 			//TODO: Add the constructor code here
 			//
 		}
-		static const int offset = 30;
+		const int offset = 30;
 		//int direction; // North = 1/ East = 2/ South = 3/ West = 4 using robot class
 
 		int robot_x = 20;
@@ -297,15 +297,10 @@ namespace KarelRobot {
 			Status_Label->Text = "Can't go this way.";
 		}
 		else
+
+		draw_old();
 		myRobot->goUp();
-
-		Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-		g->DrawIcon(tile, previous);
-		g->DrawRectangle(blackPen, previous);
-
-		Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-		g->DrawIcon(myRobot->getIcon(), robotRect);
-
+		draw_robot();
 		Status_Label->Text = "Facing North";
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
@@ -322,16 +317,9 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
-	else
+	draw_old();
 	myRobot->goLeft();
-
-	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-	g->DrawIcon(tile, previous);
-	g->DrawRectangle(blackPen, previous);
-
-	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	g->DrawIcon(myRobot->getIcon(), robotRect);
-
+	draw_robot();
 	Status_Label->Text = "Facing West";
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -349,15 +337,9 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 		Status_Label->Text = "Can't go this way.";
 	}
 	else
+	draw_old();
 	myRobot->goRight();
-
-	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
-	g->DrawIcon(tile, previous);
-	g->DrawRectangle(blackPen, previous);
-
-	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	g->DrawIcon(myRobot->getIcon(), robotRect);
-
+	draw_robot();
 	Status_Label->Text = "Facing East";
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -373,16 +355,11 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	else if (Robot^ Row == 6 && Robot^ Col == 4)
 	{
 		Status_Label->Text = "Can't go this way.";
-	}else
+	}
+	else
+	draw_old();
 	myRobot->goDown();
-	
-	Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset -1);
-	g->DrawIcon(tile, previous );
-	g->DrawRectangle(blackPen, previous);
-
-	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	g->DrawIcon(myRobot->getIcon(), robotRect);
-
+	draw_robot();
 	Status_Label->Text = "Facing South";
 
 }
@@ -395,7 +372,6 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	//Start Reading from file
 	twoDArray = gcnew array<Int32, 2>(10, 10);
 	keywordArray = gcnew array<System::String^>(10);
-	label3->Text = "0";
 	myRobot = gcnew Robot();
 	tile = gcnew System::Drawing::Icon("whitetile.ico");
 	int number;
@@ -447,8 +423,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		g->DrawIcon(walls[z]->getIcon(), wallRect);
 	}
 
-	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
-	g->DrawIcon(myRobot->getIcon(), robotRect);
+	//Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	//g->DrawIcon(myRobot->getIcon(), robotRect);
 	
 
 	int i;
@@ -511,6 +487,49 @@ private: void drawWorld(int& NUMROWS, int& NUMCOLS)
 			g->DrawRectangle(blackPen, gridRect);
 		};
 	};
+}
+
+private: System::Void draw_old()
+{
+
+	//Declare local variables;
+	int x, y = 0;
+	int row, col = 0;
+
+	//Initializing local variables;
+	col = myRobot->getX();
+	row = myRobot->getY();
+	x = myRobot->getX();
+	y = myRobot->getY();
+
+	//Create current myMouse position
+	Rectangle oldRect = Rectangle(x, y, offset, offset);
+	g->DrawIcon(tile, oldRect);
+	g->DrawRectangle(blackPen, oldRect);
+
+}
+private: System::Void draw_robot()
+{
+	int x, y = 0;
+	int row, col = 0;
+
+	//Draw mouse at new location
+	col = myRobot->getX();
+	row = myRobot->getY();
+	x = col;
+	y = row;
+	Rectangle robotRect = Rectangle(x, y, offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);
+
+	/*Rectangle previous = Rectangle((offset * myRobot->getX()), (offset * myRobot->getY()), offset - 1, offset - 1);
+	g->DrawIcon(tile, previous);
+	g->DrawRectangle(blackPen, previous);
+
+	Rectangle robotRect = Rectangle(myRobot->getX(), myRobot->getY(), offset, offset);
+	g->DrawIcon(myRobot->getIcon(), robotRect);*/
+
+
+
 }
 private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
 }
