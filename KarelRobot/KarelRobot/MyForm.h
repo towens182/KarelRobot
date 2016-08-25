@@ -546,12 +546,12 @@ private: System::Void draw_robot()
 		int y = 0;
 		x = myRobot->getX();
 		y = myRobot->getY();
-		if (x == 2 && y == 3 && beepone == false)
+		if (x == 60 && y == 90 && beepone == false)
 		{
 			beepcounttot++;
 			beepone = true;
 		}
-		else if (x == 4 && y == 6 && beeptwo == false)
+		else if (x == 120 && y == 180 && beeptwo == false)
 		{
 			beepcounttot++;
 			beeptwo = true;
