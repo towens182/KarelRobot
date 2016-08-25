@@ -41,6 +41,7 @@ namespace KarelRobot {
 	public:
 		int robot_y = 20;
 		int x1, y1 = 0;
+		int beepcounttot = 0;
 		
 		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
 		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
@@ -301,6 +302,7 @@ namespace KarelRobot {
 		draw_old();
 		myRobot->goUp();
 		draw_robot();
+		checkbeeper();
 		Status_Label->Text = "Facing North";
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
@@ -320,6 +322,7 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	draw_old();
 	myRobot->goLeft();
 	draw_robot();
+	checkbeeper();
 	Status_Label->Text = "Facing West";
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -340,6 +343,7 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 	draw_old();
 	myRobot->goRight();
 	draw_robot();
+	checkbeeper();
 	Status_Label->Text = "Facing East";
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -360,6 +364,7 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 	draw_old();
 	myRobot->goDown();
 	draw_robot();
+	checkbeeper();
 	Status_Label->Text = "Facing South";
 
 }
@@ -374,6 +379,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	keywordArray = gcnew array<System::String^>(10);
 	myRobot = gcnew Robot();
 	tile = gcnew System::Drawing::Icon("whitetile.ico");
+	label3->Text = "0";
 	int number;
 	readFromFile(keywordArray, twoDArray, number);
 
@@ -531,6 +537,27 @@ private: System::Void draw_robot()
 
 
 }
+	private: System::Void checkbeeper()
+	{
+		bool beepone;
+		bool beeptwo;
+		int x = 0;
+		int y = 0;
+		x = myRobot->getX();
+		y = myRobot->getY();
+		if (x == 2 && y == 3 && beepone == false)
+		{
+			beepcounttot++;
+			beepone = true;
+		}
+		else if (x == 4 && y == 6 && beeptwo == false)
+		{
+			beepcounttot++;
+			beeptwo = true;
+		}
+		
+
+		 }
 private: System::Void robot_pic_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
