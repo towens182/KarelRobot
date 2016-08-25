@@ -32,8 +32,6 @@ namespace KarelRobot {
 			//
 		}
 		const int offset = 30;
-		//int direction; // North = 1/ East = 2/ South = 3/ West = 4 using robot class
-
 		int robot_x = 20;
 		int beeper_counter = 0;
 		int wall_counter = 0;
@@ -42,12 +40,6 @@ namespace KarelRobot {
 		int robot_y = 20;
 		int x1, y1 = 0;
 		
-		
-		//front_is_clear, front_is_blocked, left_is_clear, left_is_blocked, right_is_clear, 
-		//right_is_blocked, next_to_a_beeper, facing_north, not_facing_north, facing_south, 
-		//not_facing_south, facing_east, not_facing_east, facing_west, not_facing_west, 
-		//any_beepers_in_beeper_bag, no_beepers_in_beeper_bag
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -294,6 +286,7 @@ namespace KarelRobot {
 		
 		
 	}
+	//Up button click
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		//For checking access
@@ -312,6 +305,7 @@ namespace KarelRobot {
 		}
 		Status_Label->Text = "Facing North";
 	}
+//Left button click
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	//For checking access
@@ -330,6 +324,7 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	}
 	Status_Label->Text = "Facing West";
 }
+//Right button click
 	private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		//For checking access
@@ -348,6 +343,7 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 	}
 	Status_Label->Text = "Facing East";
 }
+//Down button click
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
 	//For checking access
@@ -370,6 +366,7 @@ private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e
 
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
+	//Enable buttons to change direction
 	U_but->Enabled = true;
 	D_but->Enabled = true;
 	R_but->Enabled = true;
@@ -447,8 +444,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	
 
 	g = pictureBox1->CreateGraphics();
-	//bmp = gcnew Bitmap(L"road.bmp");
-
+	
+	//Disable start button or else error when clicked
 	button1->Enabled = false;
 }
 private: void draw_World()
@@ -457,7 +454,6 @@ private: void draw_World()
 	int x, y;
 
 	drawWorld = gcnew array<Cell^, 2>(8, 8);
-	//array <Int32, 2>^ drawWorld = gcnew array<Int32, 2>(NUMROWS, NUMCOLS);
 	for (row = 0; row < 8; row++)
 	{
 		for (col = 0; col < 8; col++)
@@ -490,7 +486,7 @@ private: System::Void draw_old()
 	x = myRobot->getX() * offset;
 	y = myRobot->getY() * offset;
 
-	//Create current robot position
+	//Cover robots last position
 	Rectangle oldRect = Rectangle(x, y, offset - 1, offset - 1);
 	g->FillRectangle(whiteBrush, oldRect);
 	g->DrawRectangle(blackPen, oldRect);
@@ -511,6 +507,7 @@ private: System::Void draw_robot()
 
 
 }
+	//see if there is a beeper in the cell
 	private: System::Void checkbeeper()
 	{
 		int x, y = 0;

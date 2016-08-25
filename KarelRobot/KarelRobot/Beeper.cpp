@@ -14,7 +14,6 @@ void Beeper::pickupBeeper()
 {
 	this->status = false;
 	this->num_beepers = 0;
-	//get rid of icon
 }
 System::Drawing::Icon^ Beeper::getIcon()
 {

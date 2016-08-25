@@ -1,5 +1,4 @@
 #include "Cell.h"
-//#include "Beeper.h" 
 
 Cell::Cell(int r, int c, bool a)
 {

@@ -29,10 +29,10 @@ public:
 	void goLeft() { row--; direction = 1; }
 	void goUp() { col--; direction = 2; }
 	void goDown() { col++; direction = 3; }
-
+	//Accessors
 	int getX() { return row; };
 	int getY() { return col; };
-
+	//Mutators
 	void setX(int x1) { row = x1; };
 	void setY(int y1) { col = y1; };
 	void setBeeps(int beepers) { numbeepers = beepers; };
