@@ -285,15 +285,15 @@ namespace KarelRobot {
 	}
 	private: System::Void U_but_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		if (Robot^ Col == 0)
+		if (myRobot->getY() == 0)
 		{
 			Status_Label->Text = "	Can't go this way.";
 		}
-		else if (Robot^ Row == 1 && Robot^ Col == 3)
+		else if (myRobot->getX() == 30 && myRobot->getX() == 90)
 		{
 			Status_Label->Text = "Can't go this way.";
 		}
-		else if (Robot^ Row == 6 && Robot^ Col == 4)
+		else if (myRobot->getX() == 180 && myRobot->getY() == 120)
 		{
 			Status_Label->Text = "Can't go this way.";
 		}
@@ -307,18 +307,19 @@ namespace KarelRobot {
 	}
 private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	if (Robot^ Row == 0)
+	if (myRobot->getX() == 0)
 	{
 		Status_Label->Text = "	Can't go this way.";
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	else if (myRobot->getX() == 30 && myRobot->getX() == 90)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	else if (myRobot->getX() == 180 && myRobot->getY() == 120)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
+	else
 	draw_old();
 	myRobot->goLeft();
 	draw_robot();
@@ -327,15 +328,15 @@ private: System::Void L_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	if (Robot^ Col == 7)
+	if (myRobot->getY() == 210)
 	{
 		Status_Label->Text = "	Can't go this way.";
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	else if (myRobot->getX() == 30 && myRobot->getX() == 90)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	else if (myRobot->getX() == 180 && myRobot->getY() == 120)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
@@ -348,15 +349,15 @@ private: System::Void R_but_Click(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void D_but_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	if (Robot^ Row == 7)
+	if (myRobot->getX() == 210)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
-	else if (Robot^ Row == 1 && Robot^ Col == 3)
+	else if (myRobot->getX() == 30 && myRobot->getX() == 90)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
-	else if (Robot^ Row == 6 && Robot^ Col == 4)
+	else if (myRobot->getX() == 180 && myRobot->getY() == 120)
 	{
 		Status_Label->Text = "Can't go this way.";
 	}
